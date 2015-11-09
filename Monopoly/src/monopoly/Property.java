@@ -24,8 +24,12 @@ public class Property {
     private int     rent3;
     private int     rent4;
     private int     hotel;
+    private int     id;
+    private int     houses;
+    private boolean isMorgaged;
     
-    public Property(String n, Color c, int p, int m, int r0, int r1, int r2, int r3, int r4, int h) {
+    
+    public Property(String n, Color c, int p, int m, int r0, int r1, int r2, int r3, int r4, int h, int i) {
         name = n;
         color = c;
         price = p;
@@ -36,8 +40,11 @@ public class Property {
         rent3 = r3;
         rent4 = r4;
         hotel = h;
+        id = i;
+        houses = 0;
+        isMorgaged = false;
     }
-
+    
     public String getName() {
         return name;
     }
@@ -76,5 +83,17 @@ public class Property {
 
     public int getHotel() {
         return hotel;
+    }
+    
+    public int getId() {
+        return id;
+    }
+
+    public int getHouses() {
+        return houses;
+    }
+
+    public boolean isMorgaged() {
+        return isMorgaged;
     }
 }
