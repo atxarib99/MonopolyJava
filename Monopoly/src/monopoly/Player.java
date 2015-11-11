@@ -14,43 +14,59 @@ import java.util.ArrayList;
 //Defines a player
 public class Player {
     private int cash;
+    private int id;
     private ArrayList<Property> properties;
-    private ArrayList<SpecialCard> specialCards;
-    public Player() {
+    String name;
+    //private ArrayList<SpecialCard> specialCards;
+    public Player(String name) {
+        this.name = name;
+        id = 1;
         cash = 1500;
-        properties = new ArrayList<Property>();
-        specialCards = new ArrayList<SpecialCard>();
+        properties = new ArrayList<>();
+    //    specialCards = new ArrayList<SpecialCard>();
         
     }
-
+    //gets the Cash
     public int getCash() {
         return cash;
     }
-
+    //sets the Cash
     public void setCash(int cash) {
         this.cash = cash;
     }
-
+    //returns the properties
     public ArrayList<Property> getProperties() {
         return properties;
     }
-
+    //sets the properties
     public void setProperties(ArrayList<Property> properties) {
         this.properties = properties;
     }
-
-    public ArrayList<SpecialCard> getSpecialCards() {
-        return specialCards;
+    //gets the id
+    public int getID() {
+        return id;
     }
-
-    public void setSpecialCards(ArrayList<SpecialCard> specialCards) {
-        this.specialCards = specialCards;
+    //sets the id
+    public void setID(int i) {
+        id = i;
     }
+//    public ArrayList<SpecialCard> getSpecialCards() {
+//        return specialCards;
+//    }
+//
+//    public void setSpecialCards(ArrayList<SpecialCard> specialCards) {
+//        this.specialCards = specialCards;
+//    }
+    //adds a property
     public void addProperty(Property prop) {
         properties.add(prop);
     }
-    public void addSpecialCard(SpecialCard sc) {
-        specialCards.add(sc);
+    //removes a property
+    public void removeProperty(Property prop) {
+        properties.remove(prop);
     }
+//    public void addSpecialCard(SpecialCard sc) {
+//        specialCards.add(sc);
+//    }
     
 }

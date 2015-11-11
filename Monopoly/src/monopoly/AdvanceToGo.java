@@ -9,6 +9,13 @@ package monopoly;
  *
  * @author Arib
  */
-public class ChanceCards {
-
+public class AdvanceToGo extends CommunityCards {
+    String name;
+    public AdvanceToGo(String name) {
+        super(name);
+    }
+    public void doAction(Player play) {
+        play.setID(1);
+    }
+    
 }

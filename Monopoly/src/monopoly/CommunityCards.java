@@ -9,6 +9,10 @@ package monopoly;
  *
  * @author Arib
  */
-public class ChanceCards {
+public class CommunityCards {
+    private String name;
+    public CommunityCards(String name) {
+        this.name = name;
+    }
 
 }
