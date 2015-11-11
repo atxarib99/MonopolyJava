@@ -6,6 +6,7 @@
 package monopoly;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -50,6 +51,19 @@ public class Player {
     public void setID(int i) {
         id = i;
     }
+    public int roll() {
+        Random rand = new Random();
+        int dice1 = rand.nextInt((6 - 1) + 1);
+        int dice2 = rand.nextInt((6 - 1) + 1);
+        int movement = dice1 + dice2;
+        if(dice1 == dice2) {
+            dice1 = rand.nextInt((6 - 1) + 1);
+            dice2 = rand.nextInt((6 - 1) + 1);
+            movement += (dice1 + dice2);
+        }
+        return movement;
+        
+    }
 //    public ArrayList<SpecialCard> getSpecialCards() {
 //        return specialCards;
 //    }
@@ -60,6 +74,9 @@ public class Player {
     //adds a property
     public void addProperty(Property prop) {
         properties.add(prop);
+    }
+    public String getName() {
+        return name;
     }
     //removes a property
     public void removeProperty(Property prop) {
