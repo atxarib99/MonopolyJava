@@ -14,6 +14,16 @@ import java.awt.Color;
  */
 public class Property {
     //variables for the characteristics of the properties
+    private int type;
+        //1 : go
+        //2 : jail
+        //3 : free parking
+        //4 : go to jail
+        //5 : property
+        //6 : railroad
+        //7 : utility
+        //8 : tax
+        //9 : special cards
     private String  name;
     private Color   color;
     private int     price;
@@ -26,10 +36,12 @@ public class Property {
     private int     hotel;
     private int     id;
     private int     houses;
+    private boolean hotels;
     private boolean isMorgaged;
     
     
-    public Property(String n, Color c, int p, int m, int r0, int r1, int r2, int r3, int r4, int h, int i) {
+    public Property(int t, String n, Color c, int p, int m, int r0, int r1, int r2, int r3, int r4, int h, int i, int hs, boolean hts, boolean ism) {
+        type = t;
         name = n;
         color = c;
         price = p;
@@ -41,8 +53,9 @@ public class Property {
         rent4 = r4;
         hotel = h;
         id = i;
-        houses = 0;
-        isMorgaged = false;
+        houses = hs;
+        hotels = hts;
+        isMorgaged = ism;
     }
     
     public String getName() {
@@ -60,7 +73,7 @@ public class Property {
     public int getMorgage() {
         return morgage;
     }
-
+    
     public int getRent0() {
         return rent0;
     }
