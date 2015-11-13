@@ -34,13 +34,14 @@ public class Property {
     private int     rent3;
     private int     rent4;
     private int     hotel;
+    private int     housePrice;
     private int     id;
     private int     houses;
     private boolean hotels;
     private boolean isMorgaged;
     
     
-    public Property(int t, String n, Color c, int p, int m, int r0, int r1, int r2, int r3, int r4, int h, int i, int hs, boolean hts, boolean ism) {
+    public Property(int t, String n, Color c, int p, int m, int r0, int r1, int r2, int r3, int r4, int h, int hp, int i, int hs, boolean hts, boolean ism) {
         type = t;
         name = n;
         color = c;
@@ -52,6 +53,7 @@ public class Property {
         rent3 = r3;
         rent4 = r4;
         hotel = h;
+        housePrice = hp;
         id = i;
         houses = hs;
         hotels = hts;
