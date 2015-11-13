@@ -66,10 +66,22 @@ public class PlayGame {
         Bank bank = new Bank();
         while (true) {
             int i = 0;
-            int player1 = i & 2;
+            int player1 = i & players.size();
             int move = players.get(player1).roll();
             System.out.println(players.get(player1).getName() + ", You rolled a " + move);
-            System.out.println("You landed on " + )
+            players.get(player1).setID((players.get(player1).getID() + move) % 40);
+            System.out.println("You landed on " + names[players.get(player1).getID()]);
+            if(players.get(player1).getID() == 1)
+                players.get(player1).setCash(players.get(player1).getCash() + 200);
+            else if(players.get(player1).getID() == 3 || players.get(player1).getID() == 18 || players.get(player1).getID() == 34)
+                
+//            for(int j = 0; j < bank.properties.size(); j++) {
+//                if(bank.properties.get(j).getId() == players.get(player1).getID()) {
+//                    System.out.println("Would you like to buy this property? Y/N");
+//                    String answer = key.next();
+//                    if(answer.toUpperCase().equals("")
+                }
+            }
         }
         
     }
