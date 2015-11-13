@@ -86,4 +86,12 @@ public class Player {
 //        specialCards.add(sc);
 //    }
     
+    public int bid(int highestBid) {
+        System.out.println("DO you want to bid?");
+        if (System.in.equals("N")) {
+            return -1;
+        }
+        else
+    }
+    
 }
