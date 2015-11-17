@@ -17,11 +17,14 @@ public class Board extends javax.swing.JFrame {
     /**
      * Creates new form Board
      */
-    private ArrayList<Player> players;
-    private ArrayList<Property> properties;
-    
+    public ArrayList<Player> players;
+    public ArrayList<Property> properties;
+    public Bank bank;
     public Board() {
         initComponents();
+        players = new ArrayList<>();
+        properties = new ArrayList<>();
+        bank = new Bank();
     }
 
     /**

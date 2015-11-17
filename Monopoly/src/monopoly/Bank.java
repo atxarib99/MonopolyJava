@@ -16,7 +16,6 @@ import java.util.ArrayList;
 public class Bank {
     private int taxPool;
     public ArrayList<Property> properties;
-    
     //sets the tax money pool and all the properties at the start of the game
     public Bank() {
          taxPool = 0;

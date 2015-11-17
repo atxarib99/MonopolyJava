@@ -18,12 +18,14 @@ public class Player {
     private int id;
     private ArrayList<Property> properties;
     String name;
+    boolean jailCard;
     //private ArrayList<SpecialCard> specialCards;
     public Player(String name) {
         this.name = name;
         id = 1;
         cash = 1500;
         properties = new ArrayList<>();
+        jailCard = false;
     //    specialCards = new ArrayList<SpecialCard>();
         
     }
