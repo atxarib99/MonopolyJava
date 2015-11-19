@@ -80,13 +80,13 @@ public class ChanceCards {
         return -1;
     }
     public int getRepairs(Player player, Board board) {
-        int row = player.getID() / 10;
         int house = 0;
         int hotel = 0;
+        int size = player.getProperties().size();
         int returnable;
-        for(int i = row; i < row + 10; i++) {
-            house += board.properties.get(i).getHouses() * 40;
-            hotel += board.properties.get(i).getHotel() * 115;
+        for(int i = 0; i < size; i++) {
+            house += player.getProperties().get(i).getHouses();
+            hotel += player.getProperties().get(i).getHotel();
         }
         returnable = house + hotel;
         return returnable;
