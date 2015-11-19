@@ -49,14 +49,14 @@ public class ChanceCards {
             case 6: player.setID(12); break;
             case 7: player.setCash(player.getCash() + 50); break;
             case 8: player.jailCard = true; break;
-            case 9: player.setCash(player.getCash() + 100); break;
-            case 10: player.setCash(player.getCash() - 100); break;
-            case 11: player.setCash(player.getCash() - 50); break;
-            case 12: player.setCash(player.getCash() + 25); break;
-            case 13: getRepairs(player, board); break;
-            case 14: player.setCash(player.getCash() + 10); break;
-            case 15: player.setCash(player.getCash() + 100); break;
-            case 16: player.setCash(player.getCash() + 50); break;
+            case 9: player.setID(player.getID() - 3); break;
+            case 10: player.setID(11); break;
+            case 11: getRepairs(player, board); break;
+            case 12: player.setCash(player.getCash() - 15); break;
+            case 13: player.setID(6); break;
+            case 14: player.setID(40); break;
+            case 15: player.setCash(player.getCash() - (board.players.size() * 50)); break;
+            case 16: player.setCash(player.getCash() + 150); break;
             case 17: player.setCash(player.getCash() + 100); break;
             
         }
@@ -78,5 +78,17 @@ public class ChanceCards {
         if(temp < 36)
             return 36;
         return -1;
+    }
+    public int getRepairs(Player player, Board board) {
+        int row = player.getID() / 10;
+        int house = 0;
+        int hotel = 0;
+        int returnable;
+        for(int i = row; i < row + 10; i++) {
+            house += board.properties.get(i).getHouses() * 40;
+            hotel += board.properties.get(i).getHotel() * 115;
+        }
+        returnable = house + hotel;
+        return returnable;
     }
 }
