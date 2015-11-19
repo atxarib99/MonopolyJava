@@ -28,9 +28,10 @@ public class Board extends javax.swing.JFrame {
     private ArrayList<Player> players;
     private Bank bank;
     private File location;
-    
     public Board() {
         initComponents();
+        players = new ArrayList<>();
+        bank = new Bank();
     }
 
     /**

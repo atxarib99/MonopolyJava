@@ -10,7 +10,6 @@ package monopoly;
  * @author Arib
  */
 public class CommunityCards {
-    private String name;
     private final String[] names = {
         "Advance to Go (Collect $200)", 
         "Bank error in your favor – collect $75", 
@@ -31,33 +30,44 @@ public class CommunityCards {
         "Holiday Fund matures - Receive $100",
     };
     private final int[] ids = new int[names.length];
-    public CommunityCards(String name) {
-        this.name = name;
+    public CommunityCards() {
         for (int i = 1; i < ids.length + 1; i++) {
             ids[i - 1] = i;
         }
     }
-    public void doAction(Player player, int id) {
+    public void doAction(Player player, int id, Board board) {
         switch(id) {
             case 1: player.setID(0);
             player.setCash(player.getCash() + 200); break;
             case 2: player.setCash(player.getCash() + 75); break;
             case 3: player.setCash(player.getCash() - 1); break;
-            case 4: player.jailCard = true;break;
-            case 5: ;break;
-            case 6: ;break;
-            case 7: ;break;
-            case 8: ;break;
-            case 9: ;break;
-            case 10: ;break;
-            case 11: ;break;
-            case 12: ;break;
-            case 13: ;break;
-            case 14: ;break;
-            case 15: ;break;
-            case 16: ;break;
-            case 17: ;break;
+            case 4: player.jailCard = true; break;
+            case 5: player.setID(11); break;
+            case 6: player.setCash(player.getCash() + (board.players.size() * 10)); break;
+            case 7: player.setCash(player.getCash() + (board.players.size() * 50)); break;
+            case 8: player.setCash(player.getCash() + 20); break;
+            case 9: player.setCash(player.getCash() + 100); break;
+            case 10: player.setCash(player.getCash() - 100); break;
+            case 11: player.setCash(player.getCash() - 50); break;
+            case 12: player.setCash(player.getCash() + 25); break;
+            case 13: getRepairs(player, board); break;
+            case 14: player.setCash(player.getCash() + 10); break;
+            case 15: player.setCash(player.getCash() + 100); break;
+            case 16: player.setCash(player.getCash() + 50); break;
+            case 17: player.setCash(player.getCash() + 100); break;
             
+        }
     }
-
+    public int getRepairs(Player player, Board board) {
+        int row = player.getID() / 10;
+        int house = 0;
+        int hotel = 0;
+        int returnable;
+        for(int i = row; i < row + 10; i++) {
+            house += board.properties.get(i).getHouses() * 40;
+            hotel += board.properties.get(i).getHotel() * 115;
+        }
+        returnable = house + hotel;
+        return returnable;
+    }
 }
