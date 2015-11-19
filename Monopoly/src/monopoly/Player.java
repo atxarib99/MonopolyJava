@@ -90,10 +90,27 @@ public class Player {
     
     public int bid(int highestBid) {
         System.out.println("DO you want to bid?");
-        if (System.in.equals("N")) {
+        int returnable;
+        if (System.in.toString().equals("N")) {
             return -1;
         }
-        else
+        else {
+            String input = System.in.toString();
+            try {
+                returnable = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("Couldnt parse int, try again");
+                input = System.in.toString();
+                try {
+                    returnable = Integer.parseInt(input);
+                } catch(NumberFormatException e2) {
+                    return -1;
+                }
+            }
+            
+        }
+        return returnable;
+            
     }
     
 }
