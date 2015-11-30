@@ -25,7 +25,7 @@ public class Board extends javax.swing.JFrame {
     /**
      * Creates new form Board
      */
-    private ArrayList<Player> players;
+    ArrayList<Player> players;
     private Bank bank;
     private File location;
     public Board() {
@@ -50,18 +50,35 @@ public class Board extends javax.swing.JFrame {
         player1_name = new javax.swing.JLabel();
         player1_cashLabel = new javax.swing.JLabel();
         player1_cash = new javax.swing.JLabel();
+        player1_properties = new javax.swing.JScrollPane();
+        player1_propertiesTable = new javax.swing.JTable();
+        player1_jailCard = new javax.swing.JButton();
         Player2 = new javax.swing.JPanel();
         player2_name = new javax.swing.JLabel();
         player2_cashLabel = new javax.swing.JLabel();
         player2_cash = new javax.swing.JLabel();
+        player2_properties = new javax.swing.JScrollPane();
+        player2_propertiesTable = new javax.swing.JTable();
+        player2_jailCard = new javax.swing.JButton();
         Player3 = new javax.swing.JPanel();
         player3_name = new javax.swing.JLabel();
         player3_cashLabel = new javax.swing.JLabel();
         player3_cash = new javax.swing.JLabel();
+        player3_properties = new javax.swing.JScrollPane();
+        player3_propertiesTable = new javax.swing.JTable();
+        player3_jailCard = new javax.swing.JButton();
         Player4 = new javax.swing.JPanel();
         player4_name = new javax.swing.JLabel();
         player4_cashLabel = new javax.swing.JLabel();
         player4_cash = new javax.swing.JLabel();
+        player4_properties = new javax.swing.JScrollPane();
+        player4_propertiesTable = new javax.swing.JTable();
+        player4_jailCard = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        rollDice = new javax.swing.JButton();
+        trade = new javax.swing.JButton();
+        manage = new javax.swing.JButton();
+        endTurn = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         file_newGame = new javax.swing.JMenuItem();
@@ -85,6 +102,7 @@ public class Board extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(800, 800));
         setMinimumSize(new java.awt.Dimension(800, 800));
+        setResizable(false);
 
         Board.setIcon(new javax.swing.ImageIcon("U:\\My Documents\\GitHub\\MonopolyJava\\Images\\MonopolyBoard.jpg")); // NOI18N
 
@@ -96,6 +114,56 @@ public class Board extends javax.swing.JFrame {
 
         player1_cash.setText("1500");
 
+        player1_propertiesTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Properties"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        player1_properties.setViewportView(player1_propertiesTable);
+        if (player1_propertiesTable.getColumnModel().getColumnCount() > 0) {
+            player1_propertiesTable.getColumnModel().getColumn(0).setResizable(false);
+        }
+
+        player1_jailCard.setText("No Get Out Of Jail Free Card");
+
         javax.swing.GroupLayout Player1Layout = new javax.swing.GroupLayout(Player1);
         Player1.setLayout(Player1Layout);
         Player1Layout.setHorizontalGroup(
@@ -103,23 +171,37 @@ public class Board extends javax.swing.JFrame {
             .addGroup(Player1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(Player1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(player1_name)
                     .addGroup(Player1Layout.createSequentialGroup()
                         .addComponent(player1_cashLabel)
                         .addGap(0, 0, 0)
-                        .addComponent(player1_cash)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(player1_cash)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(player1_jailCard))
+                    .addGroup(Player1Layout.createSequentialGroup()
+                        .addGroup(Player1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(player1_name)
+                            .addComponent(player1_properties, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         Player1Layout.setVerticalGroup(
             Player1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Player1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(player1_name)
-                .addGap(18, 18, 18)
-                .addGroup(Player1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(player1_cashLabel)
-                    .addComponent(player1_cash))
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addGroup(Player1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Player1Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(Player1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(player1_cashLabel)
+                            .addComponent(player1_cash))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(player1_properties, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(Player1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(player1_jailCard)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         Player2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -130,6 +212,56 @@ public class Board extends javax.swing.JFrame {
 
         player2_cash.setText("1500");
 
+        player2_propertiesTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Properties"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        player2_properties.setViewportView(player2_propertiesTable);
+        if (player2_propertiesTable.getColumnModel().getColumnCount() > 0) {
+            player2_propertiesTable.getColumnModel().getColumn(0).setResizable(false);
+        }
+
+        player2_jailCard.setText("No Get Out Of Jail Free Card");
+
         javax.swing.GroupLayout Player2Layout = new javax.swing.GroupLayout(Player2);
         Player2.setLayout(Player2Layout);
         Player2Layout.setHorizontalGroup(
@@ -137,12 +269,17 @@ public class Board extends javax.swing.JFrame {
             .addGroup(Player2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(Player2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(player2_name)
                     .addGroup(Player2Layout.createSequentialGroup()
                         .addComponent(player2_cashLabel)
                         .addGap(0, 0, 0)
-                        .addComponent(player2_cash)))
-                .addContainerGap(192, Short.MAX_VALUE))
+                        .addComponent(player2_cash))
+                    .addComponent(player2_name)
+                    .addComponent(player2_properties, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Player2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(player2_jailCard)
+                .addContainerGap())
         );
         Player2Layout.setVerticalGroup(
             Player2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,10 +287,17 @@ public class Board extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(player2_name)
                 .addGap(18, 18, 18)
-                .addGroup(Player2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(player2_cashLabel)
-                    .addComponent(player2_cash))
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addGroup(Player2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Player2Layout.createSequentialGroup()
+                        .addGroup(Player2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(player2_cashLabel)
+                            .addComponent(player2_cash))
+                        .addGap(7, 7, 7))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Player2Layout.createSequentialGroup()
+                        .addComponent(player2_jailCard, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(player2_properties, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         Player3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -164,6 +308,56 @@ public class Board extends javax.swing.JFrame {
 
         player3_cash.setText("1500");
 
+        player3_propertiesTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Properties"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        player3_properties.setViewportView(player3_propertiesTable);
+        if (player3_propertiesTable.getColumnModel().getColumnCount() > 0) {
+            player3_propertiesTable.getColumnModel().getColumn(0).setResizable(false);
+        }
+
+        player3_jailCard.setText("No Get Out Of Jail Free Card");
+
         javax.swing.GroupLayout Player3Layout = new javax.swing.GroupLayout(Player3);
         Player3.setLayout(Player3Layout);
         Player3Layout.setHorizontalGroup(
@@ -171,23 +365,37 @@ public class Board extends javax.swing.JFrame {
             .addGroup(Player3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(Player3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(player3_name)
                     .addGroup(Player3Layout.createSequentialGroup()
-                        .addComponent(player3_cashLabel)
-                        .addGap(0, 0, 0)
-                        .addComponent(player3_cash)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(player3_properties, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(Player3Layout.createSequentialGroup()
+                        .addGroup(Player3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(Player3Layout.createSequentialGroup()
+                                .addComponent(player3_cashLabel)
+                                .addGap(0, 0, 0)
+                                .addComponent(player3_cash))
+                            .addComponent(player3_name))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(player3_jailCard)))
+                .addContainerGap())
         );
         Player3Layout.setVerticalGroup(
             Player3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Player3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(player3_name)
-                .addGap(18, 18, 18)
-                .addGroup(Player3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(player3_cashLabel)
-                    .addComponent(player3_cash))
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addGroup(Player3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Player3Layout.createSequentialGroup()
+                        .addComponent(player3_name)
+                        .addGap(18, 18, 18)
+                        .addGroup(Player3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(player3_cashLabel)
+                            .addComponent(player3_cash))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Player3Layout.createSequentialGroup()
+                        .addComponent(player3_jailCard, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)))
+                .addComponent(player3_properties, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                .addGap(12, 12, 12))
         );
 
         Player4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -198,6 +406,56 @@ public class Board extends javax.swing.JFrame {
 
         player4_cash.setText("1500");
 
+        player4_propertiesTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Properties"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        player4_properties.setViewportView(player4_propertiesTable);
+        if (player4_propertiesTable.getColumnModel().getColumnCount() > 0) {
+            player4_propertiesTable.getColumnModel().getColumn(0).setResizable(false);
+        }
+
+        player4_jailCard.setText("No Get Out Of Jail Free Card");
+
         javax.swing.GroupLayout Player4Layout = new javax.swing.GroupLayout(Player4);
         Player4.setLayout(Player4Layout);
         Player4Layout.setHorizontalGroup(
@@ -205,23 +463,37 @@ public class Board extends javax.swing.JFrame {
             .addGroup(Player4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(Player4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(player4_name)
                     .addGroup(Player4Layout.createSequentialGroup()
-                        .addComponent(player4_cashLabel)
-                        .addGap(0, 0, 0)
-                        .addComponent(player4_cash)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(player4_properties, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(Player4Layout.createSequentialGroup()
+                        .addGroup(Player4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(player4_name)
+                            .addGroup(Player4Layout.createSequentialGroup()
+                                .addComponent(player4_cashLabel)
+                                .addGap(0, 0, 0)
+                                .addComponent(player4_cash)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(player4_jailCard)))
+                .addContainerGap())
         );
         Player4Layout.setVerticalGroup(
             Player4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Player4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(player4_name)
-                .addGap(18, 18, 18)
-                .addGroup(Player4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(player4_cashLabel)
-                    .addComponent(player4_cash))
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addGroup(Player4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Player4Layout.createSequentialGroup()
+                        .addComponent(player4_name)
+                        .addGap(18, 18, 18)
+                        .addGroup(Player4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(player4_cashLabel)
+                            .addComponent(player4_cash))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Player4Layout.createSequentialGroup()
+                        .addComponent(player4_jailCard)
+                        .addGap(6, 6, 6)))
+                .addComponent(player4_properties, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                .addGap(12, 12, 12))
         );
 
         javax.swing.GroupLayout GameLayout = new javax.swing.GroupLayout(Game);
@@ -241,17 +513,50 @@ public class Board extends javax.swing.JFrame {
         );
         GameLayout.setVerticalGroup(
             GameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Board, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Board, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 819, Short.MAX_VALUE)
             .addGroup(GameLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(Player1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Player1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Player2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(Player3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(Player4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        rollDice.setFont(new java.awt.Font("Tekton Pro", 0, 36)); // NOI18N
+        rollDice.setText("Roll Dice");
+
+        trade.setFont(new java.awt.Font("Tekton Pro", 0, 36)); // NOI18N
+        trade.setText("Trade");
+
+        manage.setFont(new java.awt.Font("Tekton Pro", 0, 36)); // NOI18N
+        manage.setText("Manage");
+
+        endTurn.setFont(new java.awt.Font("Tekton Pro", 0, 36)); // NOI18N
+        endTurn.setText("End Turn");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(rollDice, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(trade, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(manage, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(endTurn, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(rollDice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(trade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(manage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(endTurn, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
         );
 
         jMenu1.setText("File");
@@ -311,15 +616,19 @@ public class Board extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(Game, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(Game, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(Game, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -430,6 +739,7 @@ public class Board extends javax.swing.JFrame {
     private javax.swing.JPanel Player2;
     private javax.swing.JPanel Player3;
     private javax.swing.JPanel Player4;
+    private javax.swing.JButton endTurn;
     private javax.swing.JMenuItem file_close;
     private javax.swing.JMenuItem file_newGame;
     private javax.swing.JMenuItem file_openGame;
@@ -439,17 +749,33 @@ public class Board extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton manage;
     private javax.swing.JLabel player1_cash;
     private javax.swing.JLabel player1_cashLabel;
+    private javax.swing.JButton player1_jailCard;
     private javax.swing.JLabel player1_name;
+    private javax.swing.JScrollPane player1_properties;
+    private javax.swing.JTable player1_propertiesTable;
     private javax.swing.JLabel player2_cash;
     private javax.swing.JLabel player2_cashLabel;
+    private javax.swing.JButton player2_jailCard;
     private javax.swing.JLabel player2_name;
+    private javax.swing.JScrollPane player2_properties;
+    private javax.swing.JTable player2_propertiesTable;
     private javax.swing.JLabel player3_cash;
     private javax.swing.JLabel player3_cashLabel;
+    private javax.swing.JButton player3_jailCard;
     private javax.swing.JLabel player3_name;
+    private javax.swing.JScrollPane player3_properties;
+    private javax.swing.JTable player3_propertiesTable;
     private javax.swing.JLabel player4_cash;
     private javax.swing.JLabel player4_cashLabel;
+    private javax.swing.JButton player4_jailCard;
     private javax.swing.JLabel player4_name;
+    private javax.swing.JScrollPane player4_properties;
+    private javax.swing.JTable player4_propertiesTable;
+    private javax.swing.JButton rollDice;
+    private javax.swing.JButton trade;
     // End of variables declaration//GEN-END:variables
 }
