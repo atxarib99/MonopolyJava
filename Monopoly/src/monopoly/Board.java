@@ -25,13 +25,11 @@ public class Board extends javax.swing.JFrame {
     /**
      * Creates new form Board
      */
-    ArrayList<Player> players;
-    private Bank bank;
+    Data data;
     private File location;
     public Board() {
         initComponents();
-        players = new ArrayList<>();
-        bank = new Bank();
+        data = new Data();
     }
 
     /**
@@ -103,8 +101,6 @@ public class Board extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(800, 800));
         setMinimumSize(new java.awt.Dimension(800, 800));
         setResizable(false);
-
-        Board.setIcon(new javax.swing.ImageIcon("U:\\My Documents\\GitHub\\MonopolyJava\\Images\\MonopolyBoard.jpg")); // NOI18N
 
         Player1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -528,15 +524,35 @@ public class Board extends javax.swing.JFrame {
 
         rollDice.setFont(new java.awt.Font("Tekton Pro", 0, 36)); // NOI18N
         rollDice.setText("Roll Dice");
+        rollDice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rollDiceActionPerformed(evt);
+            }
+        });
 
         trade.setFont(new java.awt.Font("Tekton Pro", 0, 36)); // NOI18N
         trade.setText("Trade");
+        trade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tradeActionPerformed(evt);
+            }
+        });
 
         manage.setFont(new java.awt.Font("Tekton Pro", 0, 36)); // NOI18N
         manage.setText("Manage");
+        manage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageActionPerformed(evt);
+            }
+        });
 
         endTurn.setFont(new java.awt.Font("Tekton Pro", 0, 36)); // NOI18N
         endTurn.setText("End Turn");
+        endTurn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                endTurnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -696,6 +712,22 @@ public class Board extends javax.swing.JFrame {
     private void file_closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_file_closeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_file_closeActionPerformed
+
+    private void rollDiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rollDiceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rollDiceActionPerformed
+
+    private void tradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tradeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tradeActionPerformed
+
+    private void manageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_manageActionPerformed
+
+    private void endTurnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endTurnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_endTurnActionPerformed
 
     /**
      * @param args the command line arguments
