@@ -26,10 +26,12 @@ public class Board extends javax.swing.JFrame {
      * Creates new form Board
      */
     Data data;
+    int playerNum;
     private File location;
     public Board() {
         initComponents();
         data = new Data();
+        playerNum = 0;
     }
 
     /**
@@ -715,6 +717,8 @@ public class Board extends javax.swing.JFrame {
 
     private void rollDiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rollDiceActionPerformed
         // TODO add your handling code here:
+        data.players.get(playerNum).roll();
+        
     }//GEN-LAST:event_rollDiceActionPerformed
 
     private void tradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tradeActionPerformed
