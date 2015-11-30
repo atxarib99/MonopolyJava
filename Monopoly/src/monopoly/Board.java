@@ -25,6 +25,7 @@ public class Board extends javax.swing.JFrame {
     /**
      * Creates new form Board
      */
+<<<<<<< HEAD
     Data data;
     int playerNum;
     private File location;
@@ -32,6 +33,15 @@ public class Board extends javax.swing.JFrame {
         initComponents();
         data = new Data();
         playerNum = 0;
+=======
+    ArrayList<Player> players;
+    private Bank bank;
+    private File location;
+    public Board() {
+        initComponents();
+        players = new ArrayList<>();
+        bank = new Bank();
+>>>>>>> parent of 6591022... created Data Class
     }
 
     /**
@@ -103,6 +113,8 @@ public class Board extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(800, 800));
         setMinimumSize(new java.awt.Dimension(800, 800));
         setResizable(false);
+
+        Board.setIcon(new javax.swing.ImageIcon("U:\\My Documents\\GitHub\\MonopolyJava\\Images\\MonopolyBoard.jpg")); // NOI18N
 
         Player1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -526,35 +538,15 @@ public class Board extends javax.swing.JFrame {
 
         rollDice.setFont(new java.awt.Font("Tekton Pro", 0, 36)); // NOI18N
         rollDice.setText("Roll Dice");
-        rollDice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rollDiceActionPerformed(evt);
-            }
-        });
 
         trade.setFont(new java.awt.Font("Tekton Pro", 0, 36)); // NOI18N
         trade.setText("Trade");
-        trade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tradeActionPerformed(evt);
-            }
-        });
 
         manage.setFont(new java.awt.Font("Tekton Pro", 0, 36)); // NOI18N
         manage.setText("Manage");
-        manage.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageActionPerformed(evt);
-            }
-        });
 
         endTurn.setFont(new java.awt.Font("Tekton Pro", 0, 36)); // NOI18N
         endTurn.setText("End Turn");
-        endTurn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                endTurnActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -715,6 +707,7 @@ public class Board extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_file_closeActionPerformed
 
+<<<<<<< HEAD
     private void rollDiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rollDiceActionPerformed
         // TODO add your handling code here:
         data.players.get(playerNum).roll();
@@ -733,6 +726,8 @@ public class Board extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_endTurnActionPerformed
 
+=======
+>>>>>>> parent of 6591022... created Data Class
     /**
      * @param args the command line arguments
      */
