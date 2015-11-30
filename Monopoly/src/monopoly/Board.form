@@ -654,7 +654,7 @@
               <Component id="rollDice" max="32767" attributes="0"/>
               <Component id="trade" alignment="0" max="32767" attributes="0"/>
               <Component id="manage" alignment="0" max="32767" attributes="0"/>
-              <Component id="endTurn" alignment="0" pref="150" max="32767" attributes="0"/>
+              <Component id="endTurn" alignment="0" pref="100" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
