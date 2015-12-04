@@ -5,10 +5,16 @@
  */
 package monopoly;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Arib
  */
 public class Data {
-    
+    Bank bank;
+    ArrayList<Player> players;
+    public Data() {
+        bank = new Bank();
+    }
 }

@@ -28,10 +28,12 @@ public class Board extends javax.swing.JFrame {
     Data data;
     int playerNum;
     private File location;
+    boolean canRoll;
     public Board() {
         initComponents();
         data = new Data();
         playerNum = 0;
+        canRoll = true;
     }
 
     /**
@@ -740,7 +742,7 @@ public class Board extends javax.swing.JFrame {
 
     private void rollDiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rollDiceActionPerformed
         // TODO add your handling code here:
-        data.players.get(playerNum).roll();
+        data..get(playerNum).roll();
         
     }//GEN-LAST:event_rollDiceActionPerformed
 
