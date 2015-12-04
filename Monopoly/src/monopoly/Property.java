@@ -40,7 +40,11 @@ public class Property {
     private boolean hotels;
     private boolean isMorgaged;
     
-    
+    /* main constructor that holds all of the characteristics of the properties
+     * includes the type of property, name, color, prices of all possible
+     * situations when one lands on the property, and the number of houses or
+     * if there is a hotel or if it's morgaged
+     */
     public Property(int t, String n, Color c, int p, int m, int r0, int r1, int r2, int r3, int r4, int h, int hp, int i, int hs, boolean hts, boolean ism) {
         type = t;
         name = n;
@@ -60,6 +64,7 @@ public class Property {
         isMorgaged = ism;
     }
     
+    /* methods used to return any characteristic of the property */
     public String getName() {
         return name;
     }

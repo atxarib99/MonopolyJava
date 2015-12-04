@@ -14,14 +14,15 @@ import java.util.ArrayList;
  * @author lo_856348
  */
 public class Bank {
+    /* variables that hold the cash pool for free parking and all the properties still available */
     private int taxPool;
     public ArrayList<Property> properties;
-    //sets the tax money pool and all the properties at the start of the game
+    
+    /* sets the tax money pool and all the properties at the start of the game */
     public Bank() {
          taxPool = 0;
          properties = new ArrayList<>();
          
-         //String n, Color c, p, m, r0, r1, r2, r3, r4, h, i, hs, boolean hts, boolean ism
          properties.add(new Property(1, "Go", Color.white, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, false, false));
          properties.add(new Property(5, "Mediterranean Ave", Color.magenta, 60, 30, 2, 10, 30, 90, 160, 250, 50, 2, 0, false, false));
          properties.add(new Property(9, "Community Chest1", Color.white, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, -1, false, false));
@@ -65,23 +66,24 @@ public class Bank {
 
     }
 
-    //returns the amount of money gathered in the tax pool
+    /* returns the amount of money gathered in the tax pool */
     public int getTaxPool() {
         return taxPool;
     }
     
-    //gets a property from the list of properties still owned by the bank
+    /* gets a property from the list of properties still owned by the bank */
     public Property getProperty(int index) {
         return properties.get(index);
     }
     
-    //changes the amount of money in the tax pool
+    /* changes the amount of money in the tax pool */
     public void setTaxPool(int taxPool) {
         this.taxPool = taxPool;
     }
 
-    //removes a property from the list in the bank and returns it to the player
-    //who bought it to put in their list of properties
+    /* removes a property from the list in the bank and returns it to the player
+     * who bought it to put in their list of properties
+     */
     public Property takeProperty(int index) {
         Property property = properties.get(index);
         properties.remove(index);
