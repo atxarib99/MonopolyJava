@@ -44,7 +44,31 @@ public class Board extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jDialog1 = new javax.swing.JDialog();
+        tradePanel = new javax.swing.JPanel();
+        trade_traderName = new javax.swing.JLabel();
+        trade_propertyGivenField = new javax.swing.JTextField();
+        trade_propertyGiven = new javax.swing.JLabel();
+        trade_cashGiven = new javax.swing.JLabel();
+        trade_cashGivenField = new javax.swing.JTextField();
+        trade_tradeeName = new javax.swing.JLabel();
+        trade_tradeeField = new javax.swing.JTextField();
+        trade_propertyReceived = new javax.swing.JLabel();
+        trade_cashReceived = new javax.swing.JLabel();
+        trade_propertyReceivedField = new javax.swing.JTextField();
+        trade_cashReceivedField = new javax.swing.JTextField();
+        trade_finishBtn = new javax.swing.JButton();
+        trade_cancelBtn = new javax.swing.JButton();
+        jDialog2 = new javax.swing.JDialog();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         Game = new javax.swing.JPanel();
         Board = new javax.swing.JLabel();
         Player1 = new javax.swing.JPanel();
@@ -91,15 +115,203 @@ public class Board extends javax.swing.JFrame {
         file_close = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 276, Short.MAX_VALUE)
+        trade_traderName.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        trade_traderName.setText("(Name)");
+
+        trade_propertyGivenField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        trade_propertyGivenField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                trade_propertyGivenFieldActionPerformed(evt);
+            }
+        });
+
+        trade_propertyGiven.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        trade_propertyGiven.setText("Property Given:");
+
+        trade_cashGiven.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        trade_cashGiven.setText("Cash Given:   $");
+
+        trade_cashGivenField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        trade_cashGivenField.setText("0");
+        trade_cashGivenField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                trade_cashGivenFieldActionPerformed(evt);
+            }
+        });
+
+        trade_tradeeName.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        trade_tradeeName.setText("Trade With:");
+
+        trade_tradeeField.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+
+        trade_propertyReceived.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        trade_propertyReceived.setText("Property Received:");
+
+        trade_cashReceived.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        trade_cashReceived.setText("Cash Received:   $");
+
+        trade_propertyReceivedField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        trade_cashReceivedField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        trade_cashReceivedField.setText("0");
+
+        trade_finishBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        trade_finishBtn.setText("Trade");
+
+        trade_cancelBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        trade_cancelBtn.setText("Cancel");
+
+        javax.swing.GroupLayout tradePanelLayout = new javax.swing.GroupLayout(tradePanel);
+        tradePanel.setLayout(tradePanelLayout);
+        tradePanelLayout.setHorizontalGroup(
+            tradePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tradePanelLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(tradePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(trade_finishBtn)
+                    .addGroup(tradePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(trade_traderName)
+                        .addGroup(tradePanelLayout.createSequentialGroup()
+                            .addGroup(tradePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(trade_propertyGiven, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(trade_cashGiven, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGap(10, 10, 10)
+                            .addGroup(tradePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(trade_propertyGivenField)
+                                .addComponent(trade_cashGivenField, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addGroup(tradePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tradePanelLayout.createSequentialGroup()
+                        .addGroup(tradePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(trade_propertyReceived, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(trade_tradeeName)
+                            .addComponent(trade_cashReceived, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(10, 10, 10)
+                        .addGroup(tradePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(trade_tradeeField)
+                            .addComponent(trade_propertyReceivedField)
+                            .addComponent(trade_cashReceivedField, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)))
+                    .addComponent(trade_cancelBtn))
+                .addGap(50, 50, 50))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 188, Short.MAX_VALUE)
+        tradePanelLayout.setVerticalGroup(
+            tradePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tradePanelLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(tradePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(trade_traderName)
+                    .addComponent(trade_tradeeName)
+                    .addComponent(trade_tradeeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49)
+                .addGroup(tradePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(trade_propertyGivenField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(trade_propertyGiven)
+                    .addComponent(trade_propertyReceived)
+                    .addComponent(trade_propertyReceivedField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(tradePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(trade_cashGiven)
+                    .addComponent(trade_cashGivenField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(trade_cashReceived)
+                    .addComponent(trade_cashReceivedField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addGroup(tradePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(trade_finishBtn)
+                    .addComponent(trade_cancelBtn))
+                .addGap(25, 25, 25))
+        );
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 614, Short.MAX_VALUE)
+            .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jDialog1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(tradePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jDialog1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(tradePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel2.setText("Trade From: (Name)");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setText("You Give:");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setText("Property: (Property)");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setText("Cash: $0");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel6.setText("You Get:");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setText("Property: (Property)");
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setText("Cash: $0");
+
+        jButton1.setText("Accept");
+
+        jButton2.setText("Decline");
+
+        javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
+        jDialog2.getContentPane().setLayout(jDialog2Layout);
+        jDialog2Layout.setHorizontalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog2Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addGroup(jDialog2Layout.createSequentialGroup()
+                        .addGroup(jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton1)
+                            .addGroup(jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel5)))
+                        .addGap(50, 50, 50)
+                        .addGroup(jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel6)
+                            .addComponent(jButton2))))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        jDialog2Layout.setVerticalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog2Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel2)
+                .addGap(25, 25, 25)
+                .addGroup(jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel6))
+                .addGap(20, 20, 20)
+                .addGroup(jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel7))
+                .addGap(20, 20, 20)
+                .addGroup(jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel8))
+                .addGap(18, 18, 18)
+                .addGroup(jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -797,6 +1009,15 @@ public class Board extends javax.swing.JFrame {
             player1.setCash(player1.getCash() - finalCost);
         }
     }
+
+    private void trade_propertyGivenFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trade_propertyGivenFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_trade_propertyGivenFieldActionPerformed
+
+    private void trade_cashGivenFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trade_cashGivenFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_trade_cashGivenFieldActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -846,11 +1067,21 @@ public class Board extends javax.swing.JFrame {
     private javax.swing.JMenuItem file_openGame;
     private javax.swing.JMenuItem file_save;
     private javax.swing.JMenuItem file_saveAs;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JDialog jDialog1;
+    private javax.swing.JDialog jDialog2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton manage;
     private javax.swing.JLabel player1_cash;
@@ -879,5 +1110,19 @@ public class Board extends javax.swing.JFrame {
     private javax.swing.JTable player4_propertiesTable;
     private javax.swing.JButton rollDice;
     private javax.swing.JButton trade;
+    private javax.swing.JPanel tradePanel;
+    private javax.swing.JButton trade_cancelBtn;
+    private javax.swing.JLabel trade_cashGiven;
+    private javax.swing.JTextField trade_cashGivenField;
+    private javax.swing.JLabel trade_cashReceived;
+    private javax.swing.JTextField trade_cashReceivedField;
+    private javax.swing.JButton trade_finishBtn;
+    private javax.swing.JLabel trade_propertyGiven;
+    private javax.swing.JTextField trade_propertyGivenField;
+    private javax.swing.JLabel trade_propertyReceived;
+    private javax.swing.JTextField trade_propertyReceivedField;
+    private javax.swing.JTextField trade_tradeeField;
+    private javax.swing.JLabel trade_tradeeName;
+    private javax.swing.JLabel trade_traderName;
     // End of variables declaration//GEN-END:variables
 }

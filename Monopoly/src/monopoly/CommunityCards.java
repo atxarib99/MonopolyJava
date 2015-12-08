@@ -10,6 +10,7 @@ package monopoly;
  * @author Arib
  */
 public class CommunityCards {
+    /* Lists that hold the names and IDs of each type of community chest card */
     private final String[] names = {
         "Advance to Go (Collect $200)", 
         "Bank error in your favor – collect $75", 
@@ -35,6 +36,8 @@ public class CommunityCards {
             ids[i - 1] = i;
         }
     }
+    
+    /* Switch case that gives each community chest card type a specific function */
     public void doAction(Player player, int id, Data data, Bank bank) {
         switch(id) {
             case 1: player.setID(0);
@@ -58,6 +61,10 @@ public class CommunityCards {
             
         }
     }
+    
+    /* A specific card requires the player to "repair" each house and hotel
+     * they own; this method gets the amount they need to pay for the repairs
+    */
     public int getRepairs(Player player, Data data, Bank bank) {
         int row = player.getID() / 10;
         int house = 0;
