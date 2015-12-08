@@ -14,20 +14,7 @@ import java.awt.Color;
  */
 public class Property {
     //variables for the characteristics of the properties
-    private int type;
-        //1 : go
-        //2 : jail
-        //3 : free parking
-        //4 : go to jail
-        //5 : property
-        //6 : railroad
-        //7 : utility
-        //8 : tax
-        //9 : special cards
-    private String  name;
-    private Color   color;
-    private int     price;
-    private int     morgage;
+    private int     type;
     private int     rent0;
     private int     rent1;
     private int     rent2;
@@ -38,7 +25,51 @@ public class Property {
     private int     id;
     private int     houses;
     private boolean hotels;
-    private boolean isMorgaged;
+    private boolean isMorgaged;    
+    private String  name;
+    private Color   color;
+    private int     price;
+    private int     morgage;
+        //1 : go
+        //2 : jail
+        //3 : free parking
+        //4 : go to jail
+        //5 : property
+        //6 : railroad
+        //7 : utility
+        //8 : tax
+        //9 : special cards
+    public void setHouses(int houses) {
+        this.houses = houses;
+    }
+
+    public void setHotels(boolean hotels) {
+        this.hotels = hotels;
+    }
+
+
+    public void setIsMorgaged(boolean isMorgaged) {
+        this.isMorgaged = isMorgaged;
+    }
+        
+
+
+    public int getType() {
+        return type;
+    }
+
+    public int getHousePrice() {
+        return housePrice;
+    }
+
+    public boolean isHotels() {
+        return hotels;
+    }
+
+    public boolean isIsMorgaged() {
+        return isMorgaged;
+    }
+
     
     /* main constructor that holds all of the characteristics of the properties
      * includes the type of property, name, color, prices of all possible

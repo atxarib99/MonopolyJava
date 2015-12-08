@@ -80,6 +80,14 @@ public class Player {
     public String getName() {
         return name;
     }
+    public Property getPropertyFromString(String str) {
+        for(int i = 0; i < properties.size(); i++) {
+            if(properties.get(i).getName().equals(str)) {
+                return properties.get(i);
+            }
+        }
+        return null;
+    }
     //removes a property
     public void removeProperty(Property prop) {
         properties.remove(prop);
@@ -87,7 +95,9 @@ public class Player {
 //    public void addSpecialCard(SpecialCard sc) {
 //        specialCards.add(sc);
 //    }
-    
+    public boolean acceptTrade(String prop1, String prop2, int cash1, int cash2) {
+        //TODO: implement
+    }
     public int bid(int highestBid) {
         System.out.println("DO you want to bid?");
         int returnable;

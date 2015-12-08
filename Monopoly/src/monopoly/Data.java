@@ -17,4 +17,12 @@ public class Data {
     public Data() {
         bank = new Bank();
     }
+    public Player getPlayerFromString(String str) {
+        for(int i = 0; i < players.size(); i++) {
+            if(players.get(i).getName().equals(str)) {
+                return players.get(i);
+            }
+        }
+        return null;
+    }
 }

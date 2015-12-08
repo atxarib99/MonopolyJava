@@ -12,7 +12,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -742,7 +741,7 @@ public class Board extends javax.swing.JFrame {
 
     private void rollDiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rollDiceActionPerformed
         // TODO add your handling code here:
-        data..get(playerNum).roll();
+        data.players.get(playerNum).roll();
         
     }//GEN-LAST:event_rollDiceActionPerformed
 
@@ -756,8 +755,48 @@ public class Board extends javax.swing.JFrame {
 
     private void endTurnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endTurnActionPerformed
         // TODO add your handling code here:
+        if(playerNum == data.players.size())
+            playerNum = 1;
+        else
+            playerNum += 1;
     }//GEN-LAST:event_endTurnActionPerformed
 
+    private void trade(String player, String prop1, String prop2, int cash1, int cash2) {
+        Player player1 = data.players.get(playerNum);
+        Player player2 = data.getPlayerFromString(player);
+        Property thisProp1 = player1.getPropertyFromString(prop1);
+        Property thisProp2 = player2.getPropertyFromString(prop2);
+        int player1CashGive = cash1;
+        int player2CashGive = cash2;
+        player1.setCash(player1.getCash() + player2CashGive);
+        player2.setCash(player2.getCash() + player1CashGive);
+        player1.removeProperty(thisProp1);
+        player1.addProperty(thisProp2);
+        player2.removeProperty(thisProp2);
+        player2.addProperty(thisProp1);
+        
+    }
+    public void manage(String prop1, int numHouse, boolean hotel) {
+        Player player1 = data.players.get(playerNum);
+        Property thisProp1 = player1.getPropertyFromString(prop1);
+        int hotelCost = 0;
+        if(hotel) {
+            hotelCost = thisProp1.getHousePrice();
+        }
+        int numCost = 0;
+        if(numHouse + thisProp1.getHouses() < 5) {
+            numCost = numHouse * thisProp1.getHousePrice();
+        }
+        int finalCost = numCost + hotelCost;
+        if(player1.getCash() - finalCost > 0) {
+            thisProp1.setHouses(thisProp1.getHouses() + numHouse);
+            if(hotel) {
+                thisProp1.setHouses(0);
+                thisProp1.setHotels(true);
+            }
+            player1.setCash(player1.getCash() - finalCost);
+        }
+    }
     /**
      * @param args the command line arguments
      */
