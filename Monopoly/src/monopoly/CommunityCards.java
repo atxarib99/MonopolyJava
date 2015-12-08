@@ -35,7 +35,7 @@ public class CommunityCards {
             ids[i - 1] = i;
         }
     }
-    public void doAction(Player player, int id, Board board) {
+    public void doAction(Player player, int id, Data data, Bank bank) {
         switch(id) {
             case 1: player.setID(0);
             player.setCash(player.getCash() + 200); break;
@@ -43,14 +43,14 @@ public class CommunityCards {
             case 3: player.setCash(player.getCash() - 1); break;
             case 4: player.jailCard = true; break;
             case 5: player.setID(11); break;
-            case 6: player.setCash(player.getCash() + (board.players.size() * 10)); break;
-            case 7: player.setCash(player.getCash() + (board.players.size() * 50)); break;
+            case 6: player.setCash(player.getCash() + (data.players.size() * 10)); break;
+            case 7: player.setCash(player.getCash() + (data.players.size() * 50)); break;
             case 8: player.setCash(player.getCash() + 20); break;
             case 9: player.setCash(player.getCash() + 100); break;
             case 10: player.setCash(player.getCash() - 100); break;
             case 11: player.setCash(player.getCash() - 50); break;
             case 12: player.setCash(player.getCash() + 25); break;
-            case 13: getRepairs(player, board); break;
+            case 13: getRepairs(player, data, bank); break;
             case 14: player.setCash(player.getCash() + 10); break;
             case 15: player.setCash(player.getCash() + 100); break;
             case 16: player.setCash(player.getCash() + 50); break;
@@ -58,14 +58,14 @@ public class CommunityCards {
             
         }
     }
-    public int getRepairs(Player player, Board board) {
+    public int getRepairs(Player player, Data data, Bank bank) {
         int row = player.getID() / 10;
         int house = 0;
         int hotel = 0;
         int returnable;
         for(int i = row; i < row + 10; i++) {
-            house += board.properties.get(i).getHouses() * 40;
-            hotel += board.properties.get(i).getHotel() * 115;
+            house += bank.properties.get(i).getHouses() * 40;
+            hotel += bank.properties.get(i).getHotel() * 115;
         }
         returnable = house + hotel;
         return returnable;
