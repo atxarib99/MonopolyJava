@@ -86,20 +86,18 @@ public class Player {
         return movement;
         
     }
-//    public ArrayList<SpecialCard> getSpecialCards() {
-//        return specialCards;
-//    }
-//
-//    public void setSpecialCards(ArrayList<SpecialCard> specialCards) {
-//        this.specialCards = specialCards;
-//    }
-    //adds a property
+
+    /*adds a property to the player's list of properties */
     public void addProperty(Property prop) {
         properties.add(prop);
     }
+	
+	/* returns the player's name */
     public String getName() {
         return name;
     }
+	
+	/* if player owns the property requested, return the property */
     public Property getPropertyFromString(String str) {
         for(int i = 0; i < properties.size(); i++) {
             if(properties.get(i).getName().equals(str)) {
@@ -108,17 +106,22 @@ public class Player {
         }
         return null;
     }
-    //removes a property
+	
+    /*removes a property */
     public void removeProperty(Property prop) {
         properties.remove(prop);
     }
-//    public void addSpecialCard(SpecialCard sc) {
-//        specialCards.add(sc);
-//    }
+	
+	/* When someone requests a trade, the person receiving the trade has the
+	 * option to accept or decline the trade.
+	 */
     public boolean acceptTrade(String prop1, String prop2, int cash1, int cash2) {
         //TODO: implement
 		return false;
     }
+	
+	//NOT USED
+	/*
     public int bid(int highestBid) {
         System.out.println("DO you want to bid?");
         int returnable;
@@ -143,5 +146,6 @@ public class Player {
         return returnable;
             
     }
+	*/
     
 }

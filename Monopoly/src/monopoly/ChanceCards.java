@@ -38,7 +38,7 @@ public class ChanceCards {
     }
 	
 	/* Switch case that gives each chance card type a specific function */
-    public void doAction(Player player, int id, Board board) {
+    public void doAction(Player player, int id, Board board, Data data) {
         switch(id) {
             case 1: player.setID(0);
             player.setCash(player.getCash() + 200); break;
@@ -58,7 +58,7 @@ public class ChanceCards {
             case 12: player.setCash(player.getCash() - 15); break;
             case 13: player.setID(6); break;
             case 14: player.setID(40); break;
-            case 15: player.setCash(player.getCash() - (board.players.size() * 50)); break;
+            case 15: player.setCash(player.getCash() - (data.players.size() * 50)); break;
             case 16: player.setCash(player.getCash() + 150); break;
             case 17: player.setCash(player.getCash() + 100); break;
             
