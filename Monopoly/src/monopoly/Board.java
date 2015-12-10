@@ -959,6 +959,8 @@ public class Board extends javax.swing.JFrame {
 
     private void tradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tradeActionPerformed
         // TODO add your handling code here:
+        jDialog1.show();
+        if(trade_cashGiven.getText())
     }//GEN-LAST:event_tradeActionPerformed
 
     private void manageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageActionPerformed
