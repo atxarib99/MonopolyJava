@@ -904,7 +904,7 @@ public class Board extends javax.swing.JFrame {
                 location = file;
                 try {
                     //DO THIS LATER**************
-                    
+                    data = (Data) ois.readObject();
                 } catch (ClassNotFoundException es) {
                     JOptionPane.showMessageDialog(this, es);
                 }
@@ -920,7 +920,7 @@ public class Board extends javax.swing.JFrame {
             try {
                 FileOutputStream fos = new FileOutputStream(location);
                 ObjectOutputStream oos = new ObjectOutputStream(fos);
-                oos.writeObject(players);
+                oos.writeObject(data);
             } catch (IOException e) {
                 JOptionPane.showMessageDialog(this, e.toString());
             }
