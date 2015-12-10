@@ -959,8 +959,24 @@ public class Board extends javax.swing.JFrame {
 
     private void tradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tradeActionPerformed
         // TODO add your handling code here:
-        jDialog1.show();
-        if(trade_cashGiven.getText())
+        tradeDialog.show();
+        if((trade_cashGivenField.getText().equals("") || trade_propertyGiven.getText().equals("")) && (trade_cashReceivedField.getText().equals("") || trade_propertyReceivedField.getText().equals("")) || trade_tradeeField.getText().equals("")) {
+            tradeDialog.hide();
+            tradeDialog.dispose();
+            JOptionPane.showMessageDialog(this, "Empty Field");
+        }
+        Player tempPlay = data.getPlayerFromString(trade_tradeeField.getText());
+        if(tempPlay.getName().equals("Error")){
+            tradeDialog.hide();
+            tradeDialog.dispose();
+            JOptionPane.showMessageDialog(this, "Player not Found");
+        }
+        Property tempProp1 = data.players.get(playerNum).getPropertyFromString(trade_propertyGiven.getText());
+        if(tempProp1.getName().equals("error")) {
+            tradeDialog.hide();
+            tradeDialog.dispose();
+            JOptionPane.showMessageDialog(this, "Property not Found");
+        trade(trade_tradeeField.getText(), trade_propertyGiven.getText(), trade_propertyReceivedField.getText(), Integer.parseInt(trade_cashGiven.getText()), Integer.parseInt(trade_cashReceived.getText()));
     }//GEN-LAST:event_tradeActionPerformed
 
     private void manageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageActionPerformed

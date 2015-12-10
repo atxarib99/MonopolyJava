@@ -18,6 +18,7 @@ public class Data {
 	 */
 	Bank bank;
     ArrayList<Player> players;
+    Player error = new Player("Error");
     public Data() {
         bank = new Bank();
     }
@@ -29,6 +30,6 @@ public class Data {
                 return players.get(i);
             }
         }
-        return null;
+        return error;
     }
 }

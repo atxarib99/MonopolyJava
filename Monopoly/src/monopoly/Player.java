@@ -5,6 +5,7 @@
  */
 package monopoly;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -25,6 +26,7 @@ public class Player {
     private ArrayList<Property> properties;
     String name;
     boolean jailCard;
+    Property error = new Property(0, "Error", Color.RED, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, false);
     //private ArrayList<SpecialCard> specialCards;
 	
 	/* loads all the default characteristics into the player */
@@ -104,7 +106,7 @@ public class Player {
                 return properties.get(i);
             }
         }
-        return null;
+        return error;
     }
 	
     /*removes a property */
