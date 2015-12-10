@@ -44,7 +44,7 @@ public class Board extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDialog1 = new javax.swing.JDialog();
+        tradeDialog = new javax.swing.JDialog();
         tradePanel = new javax.swing.JPanel();
         trade_traderName = new javax.swing.JLabel();
         trade_propertyGivenField = new javax.swing.JTextField();
@@ -59,16 +59,16 @@ public class Board extends javax.swing.JFrame {
         trade_cashReceivedField = new javax.swing.JTextField();
         trade_finishBtn = new javax.swing.JButton();
         trade_cancelBtn = new javax.swing.JButton();
-        jDialog2 = new javax.swing.JDialog();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        accept = new javax.swing.JDialog();
+        accept_traderName = new javax.swing.JLabel();
+        accept_give = new javax.swing.JLabel();
+        accept_giveProperty = new javax.swing.JLabel();
+        accept_giveCash = new javax.swing.JLabel();
+        accept_get = new javax.swing.JLabel();
+        accept_getProperty = new javax.swing.JLabel();
+        accept_getCash = new javax.swing.JLabel();
+        accept_acceptBtn = new javax.swing.JButton();
+        accept_declineBtn = new javax.swing.JButton();
         Game = new javax.swing.JPanel();
         Board = new javax.swing.JLabel();
         Player1 = new javax.swing.JPanel();
@@ -221,96 +221,96 @@ public class Board extends javax.swing.JFrame {
                 .addGap(25, 25, 25))
         );
 
-        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
-        jDialog1.getContentPane().setLayout(jDialog1Layout);
-        jDialog1Layout.setHorizontalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout tradeDialogLayout = new javax.swing.GroupLayout(tradeDialog.getContentPane());
+        tradeDialog.getContentPane().setLayout(tradeDialogLayout);
+        tradeDialogLayout.setHorizontalGroup(
+            tradeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 614, Short.MAX_VALUE)
-            .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jDialog1Layout.createSequentialGroup()
+            .addGroup(tradeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(tradeDialogLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(tradePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
-        jDialog1Layout.setVerticalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        tradeDialogLayout.setVerticalGroup(
+            tradeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 300, Short.MAX_VALUE)
-            .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jDialog1Layout.createSequentialGroup()
+            .addGroup(tradeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(tradeDialogLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(tradePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel2.setText("Trade From: (Name)");
+        accept_traderName.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        accept_traderName.setText("Trade From: (Name)");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setText("You Give:");
+        accept_give.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        accept_give.setText("You Give:");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Property: (Property)");
+        accept_giveProperty.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        accept_giveProperty.setText("Property: (Property)");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("Cash: $0");
+        accept_giveCash.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        accept_giveCash.setText("Cash: $0");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel6.setText("You Get:");
+        accept_get.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        accept_get.setText("You Get:");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setText("Property: (Property)");
+        accept_getProperty.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        accept_getProperty.setText("Property: (Property)");
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel8.setText("Cash: $0");
+        accept_getCash.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        accept_getCash.setText("Cash: $0");
 
-        jButton1.setText("Accept");
+        accept_acceptBtn.setText("Accept");
 
-        jButton2.setText("Decline");
+        accept_declineBtn.setText("Decline");
 
-        javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
-        jDialog2.getContentPane().setLayout(jDialog2Layout);
-        jDialog2Layout.setHorizontalGroup(
-            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog2Layout.createSequentialGroup()
+        javax.swing.GroupLayout acceptLayout = new javax.swing.GroupLayout(accept.getContentPane());
+        accept.getContentPane().setLayout(acceptLayout);
+        acceptLayout.setHorizontalGroup(
+            acceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(acceptLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addGroup(jDialog2Layout.createSequentialGroup()
-                        .addGroup(jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1)
-                            .addGroup(jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel5)))
+                .addGroup(acceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(accept_traderName)
+                    .addGroup(acceptLayout.createSequentialGroup()
+                        .addGroup(acceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(accept_acceptBtn)
+                            .addGroup(acceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(accept_give)
+                                .addComponent(accept_giveProperty)
+                                .addComponent(accept_giveCash)))
                         .addGap(50, 50, 50)
-                        .addGroup(jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6)
-                            .addComponent(jButton2))))
+                        .addGroup(acceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(accept_getCash)
+                            .addComponent(accept_getProperty)
+                            .addComponent(accept_get)
+                            .addComponent(accept_declineBtn))))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
-        jDialog2Layout.setVerticalGroup(
-            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog2Layout.createSequentialGroup()
+        acceptLayout.setVerticalGroup(
+            acceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(acceptLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jLabel2)
+                .addComponent(accept_traderName)
                 .addGap(25, 25, 25)
-                .addGroup(jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel6))
+                .addGroup(acceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(accept_give)
+                    .addComponent(accept_get))
                 .addGap(20, 20, 20)
-                .addGroup(jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel7))
+                .addGroup(acceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(accept_giveProperty)
+                    .addComponent(accept_getProperty))
                 .addGap(20, 20, 20)
-                .addGroup(jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel8))
+                .addGroup(acceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(accept_giveCash)
+                    .addComponent(accept_getCash))
                 .addGap(18, 18, 18)
-                .addGroup(jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                .addGroup(acceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(accept_acceptBtn)
+                    .addComponent(accept_declineBtn))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
@@ -1060,6 +1060,16 @@ public class Board extends javax.swing.JFrame {
     private javax.swing.JPanel Player2;
     private javax.swing.JPanel Player3;
     private javax.swing.JPanel Player4;
+    private javax.swing.JDialog accept;
+    private javax.swing.JButton accept_acceptBtn;
+    private javax.swing.JButton accept_declineBtn;
+    private javax.swing.JLabel accept_get;
+    private javax.swing.JLabel accept_getCash;
+    private javax.swing.JLabel accept_getProperty;
+    private javax.swing.JLabel accept_give;
+    private javax.swing.JLabel accept_giveCash;
+    private javax.swing.JLabel accept_giveProperty;
+    private javax.swing.JLabel accept_traderName;
     private javax.swing.JPanel board;
     private javax.swing.JButton endTurn;
     private javax.swing.JMenuItem file_close;
@@ -1067,18 +1077,7 @@ public class Board extends javax.swing.JFrame {
     private javax.swing.JMenuItem file_openGame;
     private javax.swing.JMenuItem file_save;
     private javax.swing.JMenuItem file_saveAs;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JDialog jDialog1;
-    private javax.swing.JDialog jDialog2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -1110,6 +1109,7 @@ public class Board extends javax.swing.JFrame {
     private javax.swing.JTable player4_propertiesTable;
     private javax.swing.JButton rollDice;
     private javax.swing.JButton trade;
+    private javax.swing.JDialog tradeDialog;
     private javax.swing.JPanel tradePanel;
     private javax.swing.JButton trade_cancelBtn;
     private javax.swing.JLabel trade_cashGiven;

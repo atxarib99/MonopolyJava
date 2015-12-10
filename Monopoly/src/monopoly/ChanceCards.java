@@ -10,6 +10,7 @@ package monopoly;
  * @author Arib
  */
 public class ChanceCards {
+	/* Lists that hold the names and IDs of each type of chance card */
     private final String[] names = {
         "Advance to Go (Collect $200) ",
         "Advance to Illinois Ave.",
@@ -35,6 +36,8 @@ public class ChanceCards {
             ids[i - 1] = i;
         }
     }
+	
+	/* Switch case that gives each chance card type a specific function */
     public void doAction(Player player, int id, Board board) {
         switch(id) {
             case 1: player.setID(0);
@@ -61,12 +64,20 @@ public class ChanceCards {
             
         }
     }
+	
+	/* method that returns the next possible utility to land on for the chance
+	 * card that tells the player to go to the next utility
+	*/
     private int nextUtil(Player player) {
         int temp = player.getID();
         if (temp < 20)
             return 13;
         return 29;
     }
+	
+	/* method that returns the next possible railroad to go to for the card that
+	 * tells the player to go to the next railroad
+	*/
     private int nextRailroad(Player player) {
         int temp = player.getID();
         if(temp < 6 || temp > 36)
@@ -79,6 +90,11 @@ public class ChanceCards {
             return 36;
         return -1;
     }
+	
+	/* method that does the same thing as the getRepairs in CommunityCards.
+	 * A specific card requires the player to "repair" each house and hotel
+     * they own; this method gets the amount they need to pay for the repairs
+	*/
     public int getRepairs(Player player, Board board) {
         int house = 0;
         int hotel = 0;
