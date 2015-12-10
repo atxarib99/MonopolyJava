@@ -976,6 +976,7 @@ public class Board extends javax.swing.JFrame {
             tradeDialog.hide();
             tradeDialog.dispose();
             JOptionPane.showMessageDialog(this, "Property not Found");
+        }
         trade(trade_tradeeField.getText(), trade_propertyGiven.getText(), trade_propertyReceivedField.getText(), Integer.parseInt(trade_cashGiven.getText()), Integer.parseInt(trade_cashReceived.getText()));
     }//GEN-LAST:event_tradeActionPerformed
 
