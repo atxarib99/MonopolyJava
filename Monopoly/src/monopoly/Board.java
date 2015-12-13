@@ -12,8 +12,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -28,11 +30,14 @@ public class Board extends javax.swing.JFrame {
     int playerNum;
     private File location;
     boolean canRoll;
+    boolean accepted;
+    boolean chosen;
     public Board() {
         initComponents();
         data = new Data();
         playerNum = 0;
         canRoll = true;
+        chosen = false;
     }
 
     /**
@@ -264,8 +269,18 @@ public class Board extends javax.swing.JFrame {
         accept_getCash.setText("Cash: $0");
 
         accept_acceptBtn.setText("Accept");
+        accept_acceptBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accept_acceptBtnActionPerformed(evt);
+            }
+        });
 
         accept_declineBtn.setText("Decline");
+        accept_declineBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accept_declineBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout acceptLayout = new javax.swing.GroupLayout(accept.getContentPane());
         accept.getContentPane().setLayout(acceptLayout);
@@ -953,8 +968,11 @@ public class Board extends javax.swing.JFrame {
 
     private void rollDiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rollDiceActionPerformed
         // TODO add your handling code here:
-        data.players.get(playerNum).roll();
-        
+        if(canRoll)
+            data.players.get(playerNum).roll();
+        else
+            JOptionPane.showMessageDialog(this, "You've already rolled");
+        canRoll = false;
     }//GEN-LAST:event_rollDiceActionPerformed
 
     private void tradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tradeActionPerformed
@@ -977,7 +995,28 @@ public class Board extends javax.swing.JFrame {
             tradeDialog.dispose();
             JOptionPane.showMessageDialog(this, "Property not Found");
         }
-        trade(trade_tradeeField.getText(), trade_propertyGiven.getText(), trade_propertyReceivedField.getText(), Integer.parseInt(trade_cashGiven.getText()), Integer.parseInt(trade_cashReceived.getText()));
+        Property tempProp2 = tempPlay.getPropertyFromString(trade_propertyGiven.getText());
+        if(tempProp2.getName().equals("error")) {
+            tradeDialog.hide();
+            tradeDialog.dispose();
+            JOptionPane.showMessageDialog(this, "Property not Found");
+        }
+        tradeDialog.hide();
+        accept.show();
+        accept_giveCash.setText(trade_cashGiven.getText());
+        accept_getProperty.setText(trade_propertyReceived.getText());
+        accept_giveProperty.setText(trade_propertyGiven.getText());
+        accept_getCash.setText(trade_cashReceived.getText());
+        try {
+            Thread.sleep(5000);
+        } catch(InterruptedException e) {
+            accept.hide();
+            accept.dispose();
+            tradeDialog.dispose();
+            JOptionPane.showMessageDialog(this, "INTERRUPTED EXCEPTION");
+        }
+        if(accepted)
+            trade(trade_tradeeField.getText(), trade_propertyGiven.getText(), trade_propertyReceivedField.getText(), Integer.parseInt(trade_cashGiven.getText()), Integer.parseInt(trade_cashReceived.getText()));
     }//GEN-LAST:event_tradeActionPerformed
 
     private void manageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageActionPerformed
@@ -990,6 +1029,7 @@ public class Board extends javax.swing.JFrame {
             playerNum = 1;
         else
             playerNum += 1;
+        canRoll = true;
     }//GEN-LAST:event_endTurnActionPerformed
 
     private void trade(String player, String prop1, String prop2, int cash1, int cash2) {
@@ -1007,7 +1047,7 @@ public class Board extends javax.swing.JFrame {
         player2.addProperty(thisProp1);
         
     }
-    public void manage(String prop1, int numHouse, boolean hotel) {
+    private void manage(String prop1, int numHouse, boolean hotel) {
         Player player1 = data.players.get(playerNum);
         Property thisProp1 = player1.getPropertyFromString(prop1);
         int hotelCost = 0;
@@ -1028,6 +1068,47 @@ public class Board extends javax.swing.JFrame {
             player1.setCash(player1.getCash() - finalCost);
         }
     }
+    private void update() {
+        DefaultTableModel tab1 = (DefaultTableModel) player1_propertiesTable.getModel();
+        DefaultTableModel tab2 = (DefaultTableModel) player2_propertiesTable.getModel();
+        DefaultTableModel tab3 = (DefaultTableModel) player3_propertiesTable.getModel();
+        DefaultTableModel tab4 = (DefaultTableModel) player4_propertiesTable.getModel();
+        while(tab1.getRowCount() > 0) {
+            tab1.removeRow(0);
+        }
+        while(tab2.getRowCount() > 0) {
+            tab2.removeRow(0);
+        }
+        while(tab3.getRowCount() > 0) {
+            tab3.removeRow(0);
+        }
+        while(tab4.getRowCount() > 0) {
+            tab4.removeRow(0);
+        }
+        ArrayList<Property> temp1 = data.players.get(0).getProperties();
+        ArrayList<Property> temp2 = data.players.get(1).getProperties();
+        ArrayList<Property> temp3 = data.players.get(2).getProperties();
+        ArrayList<Property> temp4 = data.players.get(3).getProperties();
+        for(int i = 0; i < temp1.size(); i++) {
+            Object[] content = {temp1.get(i).getName()};
+            tab1.addRow(content);
+        }
+        for(int i = 0; i < temp2.size(); i++) {
+            Object[] content = {temp2.get(i).getName()};
+            tab2.addRow(content);
+        }
+        for(int i = 0; i < temp3.size(); i++) {
+            Object[] content = {temp3.get(i).getName()};
+            tab3.addRow(content);
+        }
+        for(int i = 0; i < temp4.size(); i++) {
+            Object[] content = {temp4.get(i).getName()};
+            tab4.addRow(content);
+        }
+        
+        
+        
+    }
 
     private void trade_propertyGivenFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trade_propertyGivenFieldActionPerformed
         // TODO add your handling code here:
@@ -1036,6 +1117,20 @@ public class Board extends javax.swing.JFrame {
     private void trade_cashGivenFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trade_cashGivenFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_trade_cashGivenFieldActionPerformed
+
+    private void accept_acceptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accept_acceptBtnActionPerformed
+        // TODO add your handling code here:
+        accepted = true;
+        accept.hide();
+        accept.dispose();
+    }//GEN-LAST:event_accept_acceptBtnActionPerformed
+
+    private void accept_declineBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accept_declineBtnActionPerformed
+        // TODO add your handling code here:
+        accepted = false;
+        accept.hide();
+        accept.dispose();
+    }//GEN-LAST:event_accept_declineBtnActionPerformed
 
     /**
      * @param args the command line arguments
