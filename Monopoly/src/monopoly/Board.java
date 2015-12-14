@@ -369,6 +369,7 @@ public class Board extends javax.swing.JFrame {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
+        manageDialog.setMinimumSize(new java.awt.Dimension(500, 400));
         manageDialog.setResizable(false);
 
         manage_title.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
@@ -1314,6 +1315,11 @@ public class Board extends javax.swing.JFrame {
             Object[] content = {temp4.get(i).getName()};
             tab4.addRow(content);
         }
+        player1_cash.setText(data.players.get(0).getCash() + "");
+        player2_cash.setText(data.players.get(1).getCash() + "");
+        player3_cash.setText(data.players.get(2).getCash() + "");
+        player4_cash.setText(data.players.get(3).getCash() + "");
+        
         
         
         
