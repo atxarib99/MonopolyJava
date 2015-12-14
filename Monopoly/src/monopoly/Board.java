@@ -32,14 +32,14 @@ public class Board extends javax.swing.JFrame {
     boolean canRoll;
     boolean accepted;
     boolean chosen;
-	boolean addHotel;
+    boolean addHotel;
     public Board() {
         initComponents();
         data = new Data();
         playerNum = 0;
         canRoll = true;
         chosen = false;
-		addHotel = false;
+	addHotel = false;
     }
 
     /**
@@ -175,6 +175,11 @@ public class Board extends javax.swing.JFrame {
 
         trade_finishBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         trade_finishBtn.setText("Trade");
+        trade_finishBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                trade_finishBtnActionPerformed(evt);
+            }
+        });
 
         trade_cancelBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         trade_cancelBtn.setText("Cancel");
@@ -1099,45 +1104,7 @@ public class Board extends javax.swing.JFrame {
     private void tradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tradeActionPerformed
         // TODO add your handling code here:
         tradeDialog.show();
-        if((trade_cashGivenField.getText().equals("") || trade_propertyGiven.getText().equals("")) && (trade_cashReceivedField.getText().equals("") || trade_propertyReceivedField.getText().equals("")) || trade_tradeeField.getText().equals("")) {
-            tradeDialog.hide();
-            tradeDialog.dispose();
-            JOptionPane.showMessageDialog(this, "Empty Field");
-        }
-        Player tempPlay = data.getPlayerFromString(trade_tradeeField.getText());
-        if(tempPlay.getName().equals("Error")){
-            tradeDialog.hide();
-            tradeDialog.dispose();
-            JOptionPane.showMessageDialog(this, "Player not Found");
-        }
-        Property tempProp1 = data.players.get(playerNum).getPropertyFromString(trade_propertyGiven.getText());
-        if(tempProp1.getName().equals("error")) {
-            tradeDialog.hide();
-            tradeDialog.dispose();
-            JOptionPane.showMessageDialog(this, "Property not Found");
-        }
-        Property tempProp2 = tempPlay.getPropertyFromString(trade_propertyGiven.getText());
-        if(tempProp2.getName().equals("error")) {
-            tradeDialog.hide();
-            tradeDialog.dispose();
-            JOptionPane.showMessageDialog(this, "Property not Found");
-        }
-        tradeDialog.hide();
-        accept.show();
-        accept_giveCash.setText(trade_cashGiven.getText());
-        accept_getProperty.setText(trade_propertyReceived.getText());
-        accept_giveProperty.setText(trade_propertyGiven.getText());
-        accept_getCash.setText(trade_cashReceived.getText());
-        try {
-            Thread.sleep(5000);
-        } catch(InterruptedException e) {
-            accept.hide();
-            accept.dispose();
-            tradeDialog.dispose();
-            JOptionPane.showMessageDialog(this, "INTERRUPTED EXCEPTION");
-        }
-        if(accepted)
-            trade(trade_tradeeField.getText(), trade_propertyGiven.getText(), trade_propertyReceivedField.getText(), Integer.parseInt(trade_cashGiven.getText()), Integer.parseInt(trade_cashReceived.getText()));
+
     }//GEN-LAST:event_tradeActionPerformed
 
     private void manageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageActionPerformed
@@ -1269,6 +1236,50 @@ public class Board extends javax.swing.JFrame {
     private void manage_hotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manage_hotelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_manage_hotelActionPerformed
+
+    private void trade_finishBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trade_finishBtnActionPerformed
+        // TODO add your handling code here:
+        if((trade_cashGivenField.getText().equals("") || trade_propertyGiven.getText().equals("")) || (trade_cashReceivedField.getText().equals("") || trade_propertyReceivedField.getText().equals("")) || trade_tradeeField.getText().equals("")) {
+            tradeDialog.hide();
+            tradeDialog.dispose();
+            JOptionPane.showMessageDialog(this, "Empty Field");
+        }
+        String name = trade_tradeeField.getText();
+        Player tempPlay = data.getPlayerFromString(name);
+        if(tempPlay.getName().equals("Error")){
+            tradeDialog.hide();
+            tradeDialog.dispose();
+            JOptionPane.showMessageDialog(this, "Player not Found");
+        }
+        Property tempProp1 = data.players.get(playerNum).getPropertyFromString(trade_propertyGiven.getText());
+        if(tempProp1.getName().equals("error")) {
+            tradeDialog.hide();
+            tradeDialog.dispose();
+            JOptionPane.showMessageDialog(this, "Property not Found");
+        }
+        Property tempProp2 = tempPlay.getPropertyFromString(trade_propertyGiven.getText());
+        if(tempProp2.getName().equals("error")) {
+            tradeDialog.hide();
+            tradeDialog.dispose();
+            JOptionPane.showMessageDialog(this, "Property not Found");
+        }
+        tradeDialog.hide();
+        accept.show();
+        accept_giveCash.setText(trade_cashGiven.getText());
+        accept_getProperty.setText(trade_propertyReceived.getText());
+        accept_giveProperty.setText(trade_propertyGiven.getText());
+        accept_getCash.setText(trade_cashReceived.getText());
+        try {
+            Thread.sleep(5000);
+        } catch(InterruptedException e) {
+            accept.hide();
+            accept.dispose();
+            tradeDialog.dispose();
+            JOptionPane.showMessageDialog(this, "INTERRUPTED EXCEPTION");
+        }
+        if(accepted)
+            trade(trade_tradeeField.getText(), trade_propertyGiven.getText(), trade_propertyReceivedField.getText(), Integer.parseInt(trade_cashGiven.getText()), Integer.parseInt(trade_cashReceived.getText()));
+    }//GEN-LAST:event_trade_finishBtnActionPerformed
 
     /**
      * @param args the command line arguments

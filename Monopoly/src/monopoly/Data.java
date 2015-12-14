@@ -16,18 +16,21 @@ public class Data {
 	 * to save the game: the properties left in the bank, and the information
 	 * of all the players.
 	 */
-	Bank bank;
+    Bank bank;
     ArrayList<Player> players;
     Player error = new Player("Error");
     public Data() {
         bank = new Bank();
+        players = new ArrayList<Player>();
     }
 	
 	/* returns the player with the name requested */
     public Player getPlayerFromString(String str) {
-        for(int i = 0; i < players.size(); i++) {
-            if(players.get(i).getName().equals(str)) {
-                return players.get(i);
+        if(players.size() > 0) {
+            for(int i = 0; i < players.size(); i++) {
+                if(players.get(i).getName().equals(str)) {
+                    return players.get(i);
+                }
             }
         }
         return error;
