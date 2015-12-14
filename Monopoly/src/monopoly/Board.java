@@ -96,7 +96,7 @@ public class Board extends javax.swing.JFrame {
         manage_finish = new javax.swing.JButton();
         manage_cancel = new javax.swing.JButton();
         startGame_addPlayers = new javax.swing.JDialog();
-        jLabel2 = new javax.swing.JLabel();
+        startGame_title = new javax.swing.JLabel();
         isPlayerOne = new javax.swing.JCheckBox();
         isPlayerTwo = new javax.swing.JCheckBox();
         isPlayerFour = new javax.swing.JCheckBox();
@@ -151,6 +151,9 @@ public class Board extends javax.swing.JFrame {
         file_saveAs = new javax.swing.JMenuItem();
         file_close = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+
+        tradeDialog.setMinimumSize(new java.awt.Dimension(614, 300));
+        tradeDialog.setResizable(false);
 
         trade_traderName.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         trade_traderName.setText("(Name)");
@@ -474,11 +477,12 @@ public class Board extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
+        startGame_addPlayers.setMinimumSize(new java.awt.Dimension(450, 300));
         startGame_addPlayers.setResizable(false);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Add Players");
+        startGame_title.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        startGame_title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        startGame_title.setText("Add Players");
 
         isPlayerOne.setText("Player 1 Name:");
         isPlayerOne.addActionListener(new java.awt.event.ActionListener() {
@@ -508,7 +512,7 @@ public class Board extends javax.swing.JFrame {
             }
         });
 
-        startGame_finishAddingPlayers.setText("STARTGAME");
+        startGame_finishAddingPlayers.setText("START GAME");
         startGame_finishAddingPlayers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 startGame_finishAddingPlayersActionPerformed(evt);
@@ -521,7 +525,7 @@ public class Board extends javax.swing.JFrame {
             startGame_addPlayersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(startGame_addPlayersLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(startGame_title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(startGame_addPlayersLayout.createSequentialGroup()
                 .addGap(126, 126, 126)
@@ -546,7 +550,7 @@ public class Board extends javax.swing.JFrame {
             startGame_addPlayersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(startGame_addPlayersLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(startGame_title, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(startGame_addPlayersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(isPlayerOne)
@@ -1008,8 +1012,7 @@ public class Board extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(Player3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(Player4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(0, 0, 0))
+                        .addComponent(Player4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         rollDice.setFont(new java.awt.Font("Tekton Pro", 0, 36)); // NOI18N
@@ -1144,6 +1147,8 @@ public class Board extends javax.swing.JFrame {
 
     private void file_newGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_file_newGameActionPerformed
         // TODO add your handling code here:
+        data = new Data();
+        startGame_addPlayers.setVisible(true);
     }//GEN-LAST:event_file_newGameActionPerformed
 
     private void file_openGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_file_openGameActionPerformed
@@ -1404,6 +1409,7 @@ public class Board extends javax.swing.JFrame {
             data.players.add(new Player(startGame_player4Name.getText()));
         else
             Player4.setVisible(false);
+        startGame_addPlayers.setVisible(false);
     }//GEN-LAST:event_startGame_finishAddingPlayersActionPerformed
 
     private void trade_finishBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trade_finishBtnActionPerformed
@@ -1515,7 +1521,6 @@ public class Board extends javax.swing.JFrame {
     private javax.swing.JCheckBox isPlayerThree;
     private javax.swing.JCheckBox isPlayerTwo;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -1562,6 +1567,7 @@ public class Board extends javax.swing.JFrame {
     private javax.swing.JTextField startGame_player2Name;
     private javax.swing.JTextField startGame_player3Name;
     private javax.swing.JTextField startGame_player4Name;
+    private javax.swing.JLabel startGame_title;
     private javax.swing.JButton trade;
     private javax.swing.JDialog tradeDialog;
     private javax.swing.JPanel tradePanel;
