@@ -1399,22 +1399,30 @@ public class Board extends javax.swing.JFrame {
 
     private void startGame_finishAddingPlayersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startGame_finishAddingPlayersActionPerformed
         // TODO add your handling code here:
-        if (isPlayer1)
+        if (isPlayer1) {
             data.players.add(new Player(startGame_player1Name.getText()));
-        else
+            player1_name.setText(player1_name.getText() + startGame_player1Name.getText());
+        } else {
             Player1.setVisible(false);
-        if (isPlayer2)
+        }
+        if (isPlayer2) {
             data.players.add(new Player(startGame_player2Name.getText()));
-        else
+            player2_name.setText(player2_name.getText() + startGame_player2Name.getText());
+        } else {
             Player2.setVisible(false);
-        if (isPlayer3)
+        }
+        if (isPlayer3) {
             data.players.add(new Player(startGame_player3Name.getText()));
-        else
+            player3_name.setText(player3_name.getText() + startGame_player3Name.getText());
+        } else {
             Player3.setVisible(false);
-        if (isPlayer4)
+        }
+        if (isPlayer4) {
             data.players.add(new Player(startGame_player4Name.getText()));
-        else
+            player4_name.setText(player4_name.getText() + startGame_player4Name.getText());
+        } else {
             Player4.setVisible(false);
+        }
         startGame_addPlayers.setVisible(false);
     }//GEN-LAST:event_startGame_finishAddingPlayersActionPerformed
 
