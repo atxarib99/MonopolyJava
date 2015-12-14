@@ -32,12 +32,14 @@ public class Board extends javax.swing.JFrame {
     boolean canRoll;
     boolean accepted;
     boolean chosen;
+	boolean addHotel;
     public Board() {
         initComponents();
         data = new Data();
         playerNum = 0;
         canRoll = true;
         chosen = false;
+		addHotel = false;
     }
 
     /**
@@ -74,6 +76,17 @@ public class Board extends javax.swing.JFrame {
         accept_getCash = new javax.swing.JLabel();
         accept_acceptBtn = new javax.swing.JButton();
         accept_declineBtn = new javax.swing.JButton();
+        manageDialog = new javax.swing.JDialog();
+        manage_title = new javax.swing.JLabel();
+        manage_propertyLabel = new javax.swing.JLabel();
+        manage_propertyField = new javax.swing.JTextField();
+        manage_housesLabel = new javax.swing.JLabel();
+        manage_houseField = new javax.swing.JTextField();
+        manage_hotel = new javax.swing.JCheckBox();
+        manage_note = new javax.swing.JLabel();
+        manage_cost = new javax.swing.JLabel();
+        manage_finish = new javax.swing.JButton();
+        manage_cancel = new javax.swing.JButton();
         Game = new javax.swing.JPanel();
         Board = new javax.swing.JLabel();
         Player1 = new javax.swing.JPanel();
@@ -327,6 +340,114 @@ public class Board extends javax.swing.JFrame {
                     .addComponent(accept_acceptBtn)
                     .addComponent(accept_declineBtn))
                 .addContainerGap(25, Short.MAX_VALUE))
+        );
+
+        manageDialog.setResizable(false);
+
+        manage_title.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        manage_title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        manage_title.setText("(Name): Manage");
+
+        manage_propertyLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        manage_propertyLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        manage_propertyLabel.setText("Property to Manage:");
+
+        manage_propertyField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        manage_housesLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        manage_housesLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        manage_housesLabel.setText("Houses to Add:");
+
+        manage_houseField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        manage_hotel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        manage_hotel.setText("Add Hotel?");
+        manage_hotel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manage_hotelActionPerformed(evt);
+            }
+        });
+
+        manage_note.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        manage_note.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        manage_note.setText("**If you add houses, do not add a hotel. If you add a hotel, do you add houses.**");
+
+        manage_cost.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        manage_cost.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        manage_cost.setText("Total Cost: $0");
+
+        manage_finish.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        manage_finish.setText("Finish");
+        manage_finish.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manage_finishActionPerformed(evt);
+            }
+        });
+
+        manage_cancel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        manage_cancel.setText("Cancel");
+        manage_cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manage_cancelActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout manageDialogLayout = new javax.swing.GroupLayout(manageDialog.getContentPane());
+        manageDialog.getContentPane().setLayout(manageDialogLayout);
+        manageDialogLayout.setHorizontalGroup(
+            manageDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageDialogLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(manage_hotel)
+                .addGap(205, 205, 205))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(manageDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(manage_note, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+                    .addComponent(manage_title, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(manage_cost, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, manageDialogLayout.createSequentialGroup()
+                        .addGroup(manageDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, manageDialogLayout.createSequentialGroup()
+                                .addGroup(manageDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(manage_propertyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(manage_housesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(manageDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(manage_propertyField)
+                                    .addComponent(manage_houseField, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, manageDialogLayout.createSequentialGroup()
+                                .addGap(135, 135, 135)
+                                .addComponent(manage_finish, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(manage_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        manageDialogLayout.setVerticalGroup(
+            manageDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(manageDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(manage_title, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(manageDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(manage_propertyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(manage_propertyField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(manageDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(manage_houseField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(manage_housesLabel))
+                .addGap(18, 18, 18)
+                .addComponent(manage_hotel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(manage_note, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(manage_cost)
+                .addGap(18, 18, 18)
+                .addGroup(manageDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(manage_finish, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(manage_cancel, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1021,6 +1142,9 @@ public class Board extends javax.swing.JFrame {
 
     private void manageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageActionPerformed
         // TODO add your handling code here:
+		manageDialog.dispose();
+		manage_title.setText(data.players.get(playerNum) + ": Manage");
+		manageDialog.setVisible(true);
     }//GEN-LAST:event_manageActionPerformed
 
     private void endTurnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endTurnActionPerformed
@@ -1132,6 +1256,20 @@ public class Board extends javax.swing.JFrame {
         accept.dispose();
     }//GEN-LAST:event_accept_declineBtnActionPerformed
 
+    private void manage_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manage_cancelActionPerformed
+        // TODO add your handling code here:
+		manageDialog.setVisible(false);
+    }//GEN-LAST:event_manage_cancelActionPerformed
+
+    private void manage_finishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manage_finishActionPerformed
+        // TODO add your handling code here:
+			manage(manage_propertyField.getText(), Integer.parseInt(manage_houseField.getText()), addHotel);
+    }//GEN-LAST:event_manage_finishActionPerformed
+
+    private void manage_hotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manage_hotelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_manage_hotelActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1197,6 +1335,17 @@ public class Board extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton manage;
+    private javax.swing.JDialog manageDialog;
+    private javax.swing.JButton manage_cancel;
+    private javax.swing.JLabel manage_cost;
+    private javax.swing.JButton manage_finish;
+    private javax.swing.JCheckBox manage_hotel;
+    private javax.swing.JTextField manage_houseField;
+    private javax.swing.JLabel manage_housesLabel;
+    private javax.swing.JLabel manage_note;
+    private javax.swing.JTextField manage_propertyField;
+    private javax.swing.JLabel manage_propertyLabel;
+    private javax.swing.JLabel manage_title;
     private javax.swing.JLabel player1_cash;
     private javax.swing.JLabel player1_cashLabel;
     private javax.swing.JButton player1_jailCard;
