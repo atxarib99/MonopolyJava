@@ -95,6 +95,7 @@ public class Board extends javax.swing.JFrame {
         manage_cost = new javax.swing.JLabel();
         manage_finish = new javax.swing.JButton();
         manage_cancel = new javax.swing.JButton();
+        manage_updateCash = new javax.swing.JButton();
         startGame_addPlayers = new javax.swing.JDialog();
         startGame_title = new javax.swing.JLabel();
         isPlayerOne = new javax.swing.JCheckBox();
@@ -420,6 +421,13 @@ public class Board extends javax.swing.JFrame {
             }
         });
 
+        manage_updateCash.setText("Update Cash");
+        manage_updateCash.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manage_updateCashActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout manageDialogLayout = new javax.swing.GroupLayout(manageDialog.getContentPane());
         manageDialog.getContentPane().setLayout(manageDialogLayout);
         manageDialogLayout.setHorizontalGroup(
@@ -433,7 +441,11 @@ public class Board extends javax.swing.JFrame {
                 .addGroup(manageDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(manage_note, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
                     .addComponent(manage_title, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(manage_cost, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, manageDialogLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(manage_cost, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(manage_updateCash))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, manageDialogLayout.createSequentialGroup()
                         .addGroup(manageDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, manageDialogLayout.createSequentialGroup()
@@ -470,12 +482,14 @@ public class Board extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(manage_note, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(manage_cost)
+                .addGroup(manageDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(manage_cost)
+                    .addComponent(manage_updateCash))
                 .addGap(18, 18, 18)
                 .addGroup(manageDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(manage_finish, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(manage_cancel, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         startGame_addPlayers.setMinimumSize(new java.awt.Dimension(450, 300));
@@ -1354,7 +1368,23 @@ public class Board extends javax.swing.JFrame {
 
     private void manage_finishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manage_finishActionPerformed
         // TODO add your handling code here:
-			manage(manage_propertyField.getText(), Integer.parseInt(manage_houseField.getText()), addHotel);
+        boolean goodSoFar = true;
+        if(manage_propertyField.getText().equals("") || manage_houseField.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Empty Fields");
+            manageDialog.setVisible(false);
+            manageDialog.dispose();
+            goodSoFar = false;
+        }
+        int houseAdd = Integer.parseInt(manage_houseField.getText());
+        Property tempProp = data.players.get(playerNum).getPropertyFromString(manage_propertyField.getText());
+        if(tempProp.getHouses() + houseAdd > 4) {
+            JOptionPane.showMessageDialog(this, "too many houses");
+            manageDialog.setVisible(false);
+            manageDialog.dispose();
+            goodSoFar = false;
+        }
+        if(goodSoFar)
+            manage(manage_propertyField.getText(), Integer.parseInt(manage_houseField.getText()), addHotel);
     }//GEN-LAST:event_manage_finishActionPerformed
 
     private void manage_hotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manage_hotelActionPerformed
@@ -1470,6 +1500,10 @@ public class Board extends javax.swing.JFrame {
             trade(trade_tradeeField.getText(), trade_propertyGiven.getText(), trade_propertyReceivedField.getText(), Integer.parseInt(trade_cashGiven.getText()), Integer.parseInt(trade_cashReceived.getText()));
     }//GEN-LAST:event_trade_finishBtnActionPerformed
 
+    private void manage_updateCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manage_updateCashActionPerformed
+        // TODO add your handling code here: GET VALUES FROM PROPERTIES TO UPDATE
+    }//GEN-LAST:event_manage_updateCashActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1550,6 +1584,7 @@ public class Board extends javax.swing.JFrame {
     private javax.swing.JTextField manage_propertyField;
     private javax.swing.JLabel manage_propertyLabel;
     private javax.swing.JLabel manage_title;
+    private javax.swing.JButton manage_updateCash;
     private javax.swing.JLabel player1_cash;
     private javax.swing.JLabel player1_cashLabel;
     private javax.swing.JButton player1_jailCard;
