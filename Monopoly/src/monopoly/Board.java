@@ -37,6 +37,9 @@ public class Board extends javax.swing.JFrame {
     boolean isPlayer2;
     boolean isPlayer3;
     boolean isPlayer4;
+    public final String NOJAILCARD = "No Get Out Of Jail Free Card";
+    public final String JAILCARDNOJAIL = "Currently Not In Jail";
+    public final String JAILCARDJAIL = "Use Get Out Of Jail Free Card";
     public Board() {
         initComponents();
         data = new Data();
@@ -1163,7 +1166,21 @@ public class Board extends javax.swing.JFrame {
     private void file_newGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_file_newGameActionPerformed
         // TODO add your handling code here:
         data = new Data();
+        startGame_addPlayers.dispose();
+        startGame_player1Name.setText("");
+        startGame_player2Name.setText("");
+        startGame_player3Name.setText("");
+        startGame_player4Name.setText("");
         startGame_addPlayers.setVisible(true);
+        update();
+        player1_name.setText("Name:");
+        player2_name.setText("Name:");
+        player3_name.setText("Name:");
+        player4_name.setText("Name:");
+        player1_cash.setText("$1500");
+        player2_cash.setText("$1500");
+        player3_cash.setText("$1500");
+        player4_cash.setText("$1500");
     }//GEN-LAST:event_file_newGameActionPerformed
 
     private void file_openGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_file_openGameActionPerformed
@@ -1177,7 +1194,6 @@ public class Board extends javax.swing.JFrame {
                 ObjectInputStream ois = new ObjectInputStream(fis);
                 location = file;
                 try {
-                    //DO THIS LATER**************
                     data = (Data) ois.readObject();
                 } catch (ClassNotFoundException es) {
                     JOptionPane.showMessageDialog(this, es);
@@ -1243,7 +1259,7 @@ public class Board extends javax.swing.JFrame {
     private void manageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageActionPerformed
         // TODO add your handling code here:
 		manageDialog.dispose();
-		manage_title.setText(data.players.get(playerNum) + ": Manage");
+		manage_title.setText(data.players.get(playerNum).getName() + ": Manage");
 		manageDialog.setVisible(true);
     }//GEN-LAST:event_manageActionPerformed
 
@@ -1429,27 +1445,39 @@ public class Board extends javax.swing.JFrame {
 
     private void startGame_finishAddingPlayersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startGame_finishAddingPlayersActionPerformed
         // TODO add your handling code here:
+        player1_name.setText("Name:");
+        player2_name.setText("Name:");
+        player3_name.setText("Name:");
+        player4_name.setText("Name:");
+        player1_cash.setText("$1500");
+        player2_cash.setText("$1500");
+        player3_cash.setText("$1500");
+        player4_cash.setText("$1500");
         if (isPlayer1) {
             data.players.add(new Player(startGame_player1Name.getText()));
             player1_name.setText(player1_name.getText() + startGame_player1Name.getText());
+            Player1.setVisible(true);
         } else {
             Player1.setVisible(false);
         }
         if (isPlayer2) {
             data.players.add(new Player(startGame_player2Name.getText()));
             player2_name.setText(player2_name.getText() + startGame_player2Name.getText());
+            Player2.setVisible(true);
         } else {
             Player2.setVisible(false);
         }
         if (isPlayer3) {
             data.players.add(new Player(startGame_player3Name.getText()));
             player3_name.setText(player3_name.getText() + startGame_player3Name.getText());
+            Player3.setVisible(true);
         } else {
             Player3.setVisible(false);
         }
         if (isPlayer4) {
             data.players.add(new Player(startGame_player4Name.getText()));
             player4_name.setText(player4_name.getText() + startGame_player4Name.getText());
+            Player4.setVisible(true);
         } else {
             Player4.setVisible(false);
         }
