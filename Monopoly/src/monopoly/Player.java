@@ -23,9 +23,11 @@ public class Player {
 	*/
     private int cash;
     private int id;
-    private ArrayList<Property> properties;
+    ArrayList<Property> properties;
     String name;
     boolean jailCard;
+    boolean inJail;
+    int jailCount;
     Property error = new Property(0, "Error", Color.RED, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, false);
     //private ArrayList<SpecialCard> specialCards;
 	
@@ -36,6 +38,8 @@ public class Player {
         cash = 1500;
         properties = new ArrayList<>();
         jailCard = false;
+        inJail = false;
+        jailCount = 0;
     //    specialCards = new ArrayList<SpecialCard>();
         
     }
@@ -67,7 +71,7 @@ public class Player {
 	
     /* sets the id */
     public void setID(int i) {
-        id = i;
+        id = i % 40;
     }
 	
 	/* When it is the player's turn and they press the roll button, a random
@@ -75,17 +79,21 @@ public class Player {
 	*  If the player rolls doubles (when both dice are the same), the player
 	 * gets to go again
 	*/
-    public int roll() {
+    public ArrayList<Integer> roll() {
         Random rand = new Random();
         int dice1 = rand.nextInt((6 - 1) + 1);
         int dice2 = rand.nextInt((6 - 1) + 1);
+        ArrayList<Integer> returnable = new ArrayList<>();
         int movement = dice1 + dice2;
         if(dice1 == dice2) {
             dice1 = rand.nextInt((6 - 1) + 1);
             dice2 = rand.nextInt((6 - 1) + 1);
             movement += (dice1 + dice2);
         }
-        return movement;
+        returnable.add(movement);
+        returnable.add(dice1);
+        returnable.add(dice2);
+        return returnable;
         
     }
 
@@ -108,7 +116,7 @@ public class Player {
         }
         return error;
     }
-	
+    
     /*removes a property */
     public void removeProperty(Property prop) {
         properties.remove(prop);

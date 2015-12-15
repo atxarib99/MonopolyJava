@@ -1243,11 +1243,51 @@ public class Board extends javax.swing.JFrame {
 
     private void rollDiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rollDiceActionPerformed
         // TODO add your handling code here:
-        if(canRoll)
-            data.players.get(playerNum).roll();
+        ArrayList<Integer> var = new ArrayList<>();
+        if(data.players.get(playerNum).inJail) {
+            var = data.players.get(playerNum).roll();
+            if(var.get(1).equals(var.get(2)) || data.players.get(playerNum).jailCount == 3) {
+                data.players.get(playerNum).inJail = false;
+                data.players.get(playerNum).jailCount = 0;
+                data.players.get(playerNum).setID(data.players.get(playerNum).getID() + var.get(0));
+                canRoll = false;
+            }
+            else {
+                data.players.get(playerNum).jailCount++;
+                canRoll = false;
+            }
+        }
+        if(canRoll) {
+            var = data.players.get(playerNum).roll();
+            JOptionPane.showMessageDialog(this, "You rolled a " + var.get(1) + " and " + var.get(2) + " for a total of " + var.get(0));
+            if (data.players.get(playerNum).getID() + var.get(0) > 40)
+                data.players.get(playerNum).setCash(data.players.get(playerNum).getCash() + 200);
+            data.players.get(playerNum).setID(data.players.get(playerNum).getID() + var.get(0));
+        }
         else
             JOptionPane.showMessageDialog(this, "You've already rolled");
         canRoll = false;
+        if(data.bank.getProperty(data.players.get(playerNum).getID()).getId() == 3) {
+            data.players.get(playerNum).setCash(data.players.get(playerNum).getCash() + data.bank.getTaxPool());
+        }
+        if(data.bank.getProperty(data.players.get(playerNum).getID()).getId() == 4) {
+            data.players.get(playerNum).setID(10);
+            data.players.get(playerNum).inJail = true;
+        }
+        if(data.bank.getProperty(data.players.get(playerNum).getID()).getId() == 5) {
+            for(int i = 0; i < data.players.size(); i++) {
+                for(int k = 0; k < data.players.get(i).properties.size(); i++) {
+                    if(data.bank.getStaticProperty(data.players.get(playerNum).getID()).equals(data.players.get(i).properties.get(k))) {
+                        data.players.get(playerNum).setCash(data.players.get(playerNum).getCash() - data.players.get(i).properties.get(k).getRent0());
+                        data.players.get(i).setCash(data.players.get(i).getCash() + data.players.get(i).properties.get(k).getRent0());
+                    }
+                }
+            }
+        }
+        //TODO: ADD IMPLEMENTATION FOR OTHER PROPERTY IDS
+        
+        
+
     }//GEN-LAST:event_rollDiceActionPerformed
 
     private void tradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tradeActionPerformed
@@ -1530,6 +1570,14 @@ public class Board extends javax.swing.JFrame {
 
     private void manage_updateCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manage_updateCashActionPerformed
         // TODO add your handling code here: GET VALUES FROM PROPERTIES TO UPDATE
+        String format = "Total Cost: $";
+        int numHouses = Integer.parseInt(manage_houseField.getText());
+        int finalCost = 0;
+        finalCost = (data.players.get(playerNum).getPropertyFromString(manage_propertyField.getText()).getHousePrice()) * numHouses;
+        if (addHotel) {
+            finalCost += data.players.get(playerNum).getPropertyFromString(manage_propertyField.getText()).getHousePrice();
+        }
+        manage_cost.setText(format + finalCost);
     }//GEN-LAST:event_manage_updateCashActionPerformed
 
     /**
