@@ -81,8 +81,8 @@ public class Player {
 	*/
     public ArrayList<Integer> roll() {
         Random rand = new Random();
-        int dice1 = rand.nextInt((6 - 1) + 1);
-        int dice2 = rand.nextInt((6 - 1) + 1);
+        int dice1 = rand.nextInt((6 - 1) + 1) + 1;
+        int dice2 = rand.nextInt((6 - 1) + 1) + 1;
         ArrayList<Integer> returnable = new ArrayList<>();
         int movement = dice1 + dice2;
         if(dice1 == dice2) {
