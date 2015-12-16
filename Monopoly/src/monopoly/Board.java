@@ -1335,8 +1335,7 @@ public class Board extends javax.swing.JFrame {
                         }
                     }
                 }
-            }
-        } else {
+            } else {
             buyProperty.setVisible(true);
             try {
                 Thread.sleep(5000);
@@ -1350,6 +1349,7 @@ public class Board extends javax.swing.JFrame {
                 data.bank.properties.remove(data.bank.getProperty(data.players.get(playerNum).getID()));
             }
         }
+        } 
         if(data.bank.getProperty(data.players.get(playerNum).getID()).getType() == 6) {
             int numRoads = 0;
             for(int i = 0; i < data.players.size(); i++) {
