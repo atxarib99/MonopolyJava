@@ -47,7 +47,7 @@ public class Bank {
          properties.add(new Property(5, "New York Ave", Color.orange, 200, 100, 16, 80, 220, 600, 800, 1000, 100, 20, 0, false, false));
          properties.add(new Property(3, "Free Parking", Color.white, 0, 0, 0, 0, 0, 0, 0, 0, 0, 21, -1, false, false));
          properties.add(new Property(5, "Kentucky Ave", Color.red, 220, 110, 18, 90, 250, 700, 875, 1050, 150, 22, 0, false, false));
-         properties.add(new Property(9, "Chance", Color.white, 0, 0, 0, 0, 0, 0, 0, 0, 23, -1, 0, false, false));
+         properties.add(new Property(9, "Chance", Color.white, 0, 0, 0, 0, 0, 0, 0, 0, 0, 23, -1, false, false));
          properties.add(new Property(5, "Indiana Ave", Color.red, 220, 110, 18, 90, 250, 700, 875, 1050, 150, 24, 0, false, false));
          properties.add(new Property(5, "Illinois Ave", Color.red, 240, 120, 20, 100, 300, 750, 925, 1100, 150, 25, 0, false, false));
          properties.add(new Property(6, "B. & O. Railroad", Color.white, 200, 100, 0, 25, 50, 100, 200, 0, 0, 26, -1, false, false));

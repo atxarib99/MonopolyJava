@@ -171,6 +171,10 @@ public class Board extends javax.swing.JFrame {
         tradeDialog.setMinimumSize(new java.awt.Dimension(614, 300));
         tradeDialog.setResizable(false);
 
+        tradePanel.setMaximumSize(new java.awt.Dimension(614, 400));
+        tradePanel.setMinimumSize(new java.awt.Dimension(614, 400));
+        tradePanel.setPreferredSize(new java.awt.Dimension(614, 400));
+
         trade_traderName.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         trade_traderName.setText("(Name)");
 
@@ -275,7 +279,7 @@ public class Board extends javax.swing.JFrame {
                     .addComponent(trade_cashGivenField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(trade_cashReceived)
                     .addComponent(trade_cashReceivedField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(tradePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(trade_finishBtn)
                     .addComponent(trade_cancelBtn))
@@ -286,21 +290,21 @@ public class Board extends javax.swing.JFrame {
         tradeDialog.getContentPane().setLayout(tradeDialogLayout);
         tradeDialogLayout.setHorizontalGroup(
             tradeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 614, Short.MAX_VALUE)
+            .addGap(0, 634, Short.MAX_VALUE)
             .addGroup(tradeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(tradeDialogLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tradeDialogLayout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tradePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         tradeDialogLayout.setVerticalGroup(
             tradeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
             .addGroup(tradeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(tradeDialogLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(tradePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tradeDialogLayout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tradePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(104, Short.MAX_VALUE)))
         );
 
         accept_traderName.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -601,6 +605,10 @@ public class Board extends javax.swing.JFrame {
                 .addComponent(startGame_finishAddingPlayers)
                 .addContainerGap(64, Short.MAX_VALUE))
         );
+
+        buyProperty.setMaximumSize(new java.awt.Dimension(400, 300));
+        buyProperty.setMinimumSize(new java.awt.Dimension(400, 300));
+        buyProperty.setResizable(false);
 
         buyProperty_yes.setText("Yes");
         buyProperty_yes.addActionListener(new java.awt.event.ActionListener() {
