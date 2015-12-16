@@ -37,6 +37,7 @@ public class Board extends javax.swing.JFrame {
     boolean isPlayer2;
     boolean isPlayer3;
     boolean isPlayer4;
+    boolean wantToBuy;
     public final String NOJAILCARD = "No Get Out Of Jail Free Card";
     public final String JAILCARDNOJAIL = "Currently Not In Jail";
     public final String JAILCARDJAIL = "Use Get Out Of Jail Free Card";
@@ -46,11 +47,12 @@ public class Board extends javax.swing.JFrame {
         playerNum = 0;
         canRoll = true;
         chosen = false;
-		addHotel = false;
+        addHotel = false;
         isPlayer1 = false;
         isPlayer2 = false;
         isPlayer3 = false;
         isPlayer4 = false;
+        wantToBuy = false;
     }
 
     /**
@@ -110,6 +112,10 @@ public class Board extends javax.swing.JFrame {
         startGame_player3Name = new javax.swing.JTextField();
         startGame_player4Name = new javax.swing.JTextField();
         startGame_finishAddingPlayers = new javax.swing.JButton();
+        buyProperty = new javax.swing.JDialog();
+        buyProperty_yes = new javax.swing.JButton();
+        buyProperty_no = new javax.swing.JButton();
+        buyProperty_name = new javax.swing.JLabel();
         Game = new javax.swing.JPanel();
         Board = new javax.swing.JLabel();
         Player1 = new javax.swing.JPanel();
@@ -588,6 +594,51 @@ public class Board extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(startGame_finishAddingPlayers)
                 .addContainerGap(64, Short.MAX_VALUE))
+        );
+
+        buyProperty_yes.setText("Yes");
+        buyProperty_yes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buyProperty_yesActionPerformed(evt);
+            }
+        });
+
+        buyProperty_no.setText("No");
+        buyProperty_no.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buyProperty_noActionPerformed(evt);
+            }
+        });
+
+        buyProperty_name.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        buyProperty_name.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        buyProperty_name.setText("Would you like to buy: ");
+
+        javax.swing.GroupLayout buyPropertyLayout = new javax.swing.GroupLayout(buyProperty.getContentPane());
+        buyProperty.getContentPane().setLayout(buyPropertyLayout);
+        buyPropertyLayout.setHorizontalGroup(
+            buyPropertyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(buyPropertyLayout.createSequentialGroup()
+                .addGap(78, 78, 78)
+                .addComponent(buyProperty_yes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(buyProperty_no)
+                .addGap(74, 74, 74))
+            .addGroup(buyPropertyLayout.createSequentialGroup()
+                .addGap(125, 125, 125)
+                .addComponent(buyProperty_name)
+                .addContainerGap(131, Short.MAX_VALUE))
+        );
+        buyPropertyLayout.setVerticalGroup(
+            buyPropertyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, buyPropertyLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(buyProperty_name)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
+                .addGroup(buyPropertyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buyProperty_yes)
+                    .addComponent(buyProperty_no))
+                .addGap(57, 57, 57))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1257,24 +1308,39 @@ public class Board extends javax.swing.JFrame {
         else
             JOptionPane.showMessageDialog(this, "You've already rolled");
         canRoll = false;
-        if(data.bank.getProperty(data.players.get(playerNum).getID()).getId() == 3) {
+        if(data.bank.getProperty(data.players.get(playerNum).getID()).getType() == 3) {
             data.players.get(playerNum).setCash(data.players.get(playerNum).getCash() + data.bank.getTaxPool());
         }
-        if(data.bank.getProperty(data.players.get(playerNum).getID()).getId() == 4) {
+        if(data.bank.getProperty(data.players.get(playerNum).getID()).getType() == 4) {
             data.players.get(playerNum).setID(10);
             data.players.get(playerNum).inJail = true;
         }
-        if(data.bank.getProperty(data.players.get(playerNum).getID()).getId() == 5) {
-            for(int i = 0; i < data.players.size(); i++) {
-                for(int k = 0; k < data.players.get(i).properties.size(); i++) {
-                    if(data.bank.getStaticProperty(data.players.get(playerNum).getID()).equals(data.players.get(i).properties.get(k))) {
-                        data.players.get(playerNum).setCash(data.players.get(playerNum).getCash() - data.players.get(i).properties.get(k).getRent0());
-                        data.players.get(i).setCash(data.players.get(i).getCash() + data.players.get(i).properties.get(k).getRent0());
+        if(!data.bank.getProperty(data.players.get(playerNum).getID()).getName().equals("Error")) {
+            if(data.bank.getProperty(data.players.get(playerNum).getID()).getId() == 5) {
+                for(int i = 0; i < data.players.size(); i++) {
+                    for(int k = 0; k < data.players.get(i).properties.size(); i++) {
+                        if(data.bank.getStaticProperty(data.players.get(playerNum).getID()).equals(data.players.get(i).properties.get(k))) {
+                            data.players.get(playerNum).setCash(data.players.get(playerNum).getCash() - data.players.get(i).properties.get(k).getRent0());
+                            data.players.get(i).setCash(data.players.get(i).getCash() + data.players.get(i).properties.get(k).getRent0());
+                        }
                     }
                 }
             }
+        } else {
+            buyProperty.setVisible(true);
+            try {
+                Thread.sleep(5000);
+            } catch(InterruptedException e) {
+                buyProperty.setVisible(false);
+                buyProperty.dispose();
+                JOptionPane.showMessageDialog(this, "INTERRUPTED EXCEPTION");
+            }
+            if(wantToBuy) {
+                data.players.get(playerNum).addProperty(data.bank.getProperty(data.players.get(playerNum).getID()));
+                data.bank.properties.remove(data.bank.getProperty(data.players.get(playerNum).getID()));
+            }
         }
-        if(data.bank.getProperty(data.players.get(playerNum).getID()).getId() == 6) {
+        if(data.bank.getProperty(data.players.get(playerNum).getID()).getType() == 6) {
             int numRoads = 0;
             for(int i = 0; i < data.players.size(); i++) {
                 for(int k = 0; k < data.players.get(i).properties.size(); i++) {
@@ -1296,7 +1362,7 @@ public class Board extends javax.swing.JFrame {
                     numRoads = 0;
             }
         }
-        if(data.bank.getProperty(data.players.get(playerNum).getID()).getId() == 7) {
+        if(data.bank.getProperty(data.players.get(playerNum).getID()).getType() == 7) {
             int toGive = 0;
             toGive = var.get(1) + var.get(2);
             for(int i = 0; i < data.players.size(); i++) {
@@ -1308,11 +1374,11 @@ public class Board extends javax.swing.JFrame {
                 }
             }
         }
-        if(data.bank.getProperty(data.players.get(playerNum).getID()).getId() == 8) {
+        if(data.bank.getProperty(data.players.get(playerNum).getID()).getType() == 8) {
             data.players.get(playerNum).setCash(data.players.get(playerNum).getCash() - 75);
             data.bank.setTaxPool(data.bank.getTaxPool() + 75);
         }
-        if(data.bank.getProperty(data.players.get(playerNum).getID()).getId() == 9) {
+        if(data.bank.getProperty(data.players.get(playerNum).getID()).getType() == 9) {
             if(data.players.get(playerNum).getID() == 8 || data.players.get(playerNum).getID() == 23 || data.players.get(playerNum).getID() == 37) {
                 int got = data.chanceCards.getRandomID();
                 data.chanceCards.doAction(data.players.get(playerNum), got, this, data);
@@ -1545,10 +1611,10 @@ public class Board extends javax.swing.JFrame {
 
     private void startGame_finishAddingPlayersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startGame_finishAddingPlayersActionPerformed
         // TODO add your handling code here:
-		if (!isPlayer1 && !isPlayer2 && !isPlayer3 && !isPlayer4)
-			JOptionPane.showMessageDialog(this, "Please Add At Least One Player");
-		else {
-		data = new Data();
+        if (!isPlayer1 && !isPlayer2 && !isPlayer3 && !isPlayer4)
+            JOptionPane.showMessageDialog(this, "Please Add At Least One Player");
+	else {
+            data = new Data();
         player1_name.setText("Name:");
         player2_name.setText("Name:");
         player3_name.setText("Name:");
@@ -1646,6 +1712,20 @@ public class Board extends javax.swing.JFrame {
         manage_cost.setText(format + finalCost);
     }//GEN-LAST:event_manage_updateCashActionPerformed
 
+    private void buyProperty_yesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyProperty_yesActionPerformed
+        // TODO add your handling code here:
+        wantToBuy = true;
+        buyProperty.setVisible(false);
+        buyProperty.dispose();
+    }//GEN-LAST:event_buyProperty_yesActionPerformed
+
+    private void buyProperty_noActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyProperty_noActionPerformed
+        // TODO add your handling code here:
+        wantToBuy = false;
+        buyProperty.setVisible(false);
+        buyProperty.dispose();
+    }//GEN-LAST:event_buyProperty_noActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1700,6 +1780,10 @@ public class Board extends javax.swing.JFrame {
     private javax.swing.JLabel accept_traderName;
     private javax.swing.JPanel board;
     private javax.swing.JPanel buttons;
+    private javax.swing.JDialog buyProperty;
+    private javax.swing.JLabel buyProperty_name;
+    private javax.swing.JButton buyProperty_no;
+    private javax.swing.JButton buyProperty_yes;
     private javax.swing.JButton endTurn;
     private javax.swing.JMenuItem file_close;
     private javax.swing.JMenuItem file_newGame;

@@ -18,6 +18,7 @@ public class Bank {
     private int taxPool;
     public ArrayList<Property> properties;
     public ArrayList<Property> staticProperties;
+    Property error = new Property(0, "Error", Color.white, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, false, false);
     
     /* sets the tax money pool and all the properties at the start of the game */
     public Bank() {
@@ -117,10 +118,23 @@ public class Bank {
     
     /* gets a property from the list of properties still owned by the bank */
     public Property getProperty(int index) {
-        return properties.get(index);
+        Property temp;
+        for(int i = 0; i < properties.size(); i++) {
+            if(properties.get(i).getId() == index) {
+                temp = properties.get(i);
+                return temp;
+            }
+        }
+        return error;
     }
     public Property getStaticProperty(int index) {
-        return staticProperties.get(index);
+        Property temp;
+        try {
+            temp = staticProperties.get(index);
+        } catch (NullPointerException e) {
+            return error;
+        }
+        return temp;
     }
     
     /* changes the amount of money in the tax pool */
