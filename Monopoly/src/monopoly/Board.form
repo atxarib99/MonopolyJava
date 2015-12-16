@@ -854,11 +854,12 @@
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               <Component id="Game" min="-2" max="-2" attributes="0"/>
           </Group>
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="buttons" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
+<<<<<<< 1850ebe632604458464d99f7f5ba2935370e9948
                       <Component id="indexOfPlayers" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="p1Index" min="-2" pref="131" max="-2" attributes="0"/>
@@ -869,6 +870,11 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="p4Index" min="-2" pref="183" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+=======
+                      <Component id="indexOfPlayers" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="buyPropertyButton" min="-2" pref="256" max="-2" attributes="0"/>
+>>>>>>> fixed bugs
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -883,6 +889,7 @@
               <Component id="buttons" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< 1850ebe632604458464d99f7f5ba2935370e9948
                   <Component id="indexOfPlayers" max="32767" attributes="0"/>
                   <Component id="p1Index" max="32767" attributes="0"/>
                   <Component id="p2Index" max="32767" attributes="0"/>
@@ -890,6 +897,17 @@
                   <Component id="p4Index" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
+=======
+                  <Group type="102" attributes="0">
+                      <Component id="indexOfPlayers" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="buyPropertyButton" min="-2" pref="89" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+>>>>>>> fixed bugs
           </Group>
       </Group>
     </DimensionLayout>
@@ -1506,6 +1524,7 @@
         <Property name="text" type="java.lang.String" value="INDEX OF PLAYERS: "/>
       </Properties>
     </Component>
+<<<<<<< 1850ebe632604458464d99f7f5ba2935370e9948
     <Component class="javax.swing.JLabel" name="p1Index">
       <Properties>
         <Property name="text" type="java.lang.String" value="1"/>
@@ -1525,6 +1544,15 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="1"/>
       </Properties>
+=======
+    <Component class="javax.swing.JButton" name="buyPropertyButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Buy Property"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buyPropertyButtonActionPerformed"/>
+      </Events>
+>>>>>>> fixed bugs
     </Component>
   </SubComponents>
 </Form>
