@@ -127,6 +127,13 @@ public class Bank {
         }
         return error;
     }
+    public void removeFromString(String str) {
+        for(int i = 0; i < properties.size(); i++) {
+            if(properties.get(i).getName().equals(str)) {
+                properties.remove(i);
+            }
+        }
+    }
     public Property getStaticProperty(int index) {
         Property temp;
         try {
@@ -146,8 +153,9 @@ public class Bank {
      * who bought it to put in their list of properties
      */
     public Property takeProperty(int index) {
-        Property property = properties.get(index);
-        properties.remove(index);
+        Property property = staticProperties.get(index);
+        String propName = property.getName();
+        removeFromString(propName);
         return property;
     }
     public boolean canBuy(int id) {

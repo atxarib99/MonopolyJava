@@ -159,6 +159,7 @@ public class Board extends javax.swing.JFrame {
         p2Index = new javax.swing.JLabel();
         p3Index = new javax.swing.JLabel();
         p4Index = new javax.swing.JLabel();
+        buyPropertyButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         file_newGame = new javax.swing.JMenuItem();
@@ -606,7 +607,6 @@ public class Board extends javax.swing.JFrame {
                 .addContainerGap(64, Short.MAX_VALUE))
         );
 
-        buyProperty.setMaximumSize(new java.awt.Dimension(400, 300));
         buyProperty.setMinimumSize(new java.awt.Dimension(400, 300));
         buyProperty.setResizable(false);
 
@@ -1162,6 +1162,13 @@ public class Board extends javax.swing.JFrame {
 
         p4Index.setText("1");
 
+        buyPropertyButton.setText("Buy Property");
+        buyPropertyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buyPropertyButtonActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("File");
 
         file_newGame.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
@@ -1235,7 +1242,9 @@ public class Board extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(p3Index, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(p4Index, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(p4Index, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(buyPropertyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -1251,7 +1260,8 @@ public class Board extends javax.swing.JFrame {
                     .addComponent(p1Index, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(p2Index, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(p3Index, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(p4Index, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(p4Index, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buyPropertyButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -1266,6 +1276,16 @@ public class Board extends javax.swing.JFrame {
         startGame_player3Name.setText("");
         startGame_player4Name.setText("");
         startGame_addPlayers.setVisible(true);
+        data = new Data();
+        playerNum = 0;
+        canRoll = true;
+        chosen = false;
+        addHotel = false;
+        isPlayer1 = false;
+        isPlayer2 = false;
+        isPlayer3 = false;
+        isPlayer4 = false;
+        wantToBuy = false;
     }//GEN-LAST:event_file_newGameActionPerformed
 
     private void file_openGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_file_openGameActionPerformed
@@ -1354,7 +1374,7 @@ public class Board extends javax.swing.JFrame {
         else
             JOptionPane.showMessageDialog(this, "You've already rolled");
         canRoll = false;
-		update();
+        update();
         if(data.bank.getProperty(data.players.get(playerNum).getID()).getType() == 3) {
             data.players.get(playerNum).setCash(data.players.get(playerNum).getCash() + data.bank.getTaxPool());
         }
@@ -1435,7 +1455,7 @@ public class Board extends javax.swing.JFrame {
                 data.communityCards.doAction(data.players.get(playerNum), got, data, data.bank);
             }
         }
-        
+        update();
         
 
     }//GEN-LAST:event_rollDiceActionPerformed
@@ -1466,7 +1486,7 @@ public class Board extends javax.swing.JFrame {
         canRoll = true;
     }//GEN-LAST:event_endTurnActionPerformed
 
-    private void trade(String player, String prop1, String prop2, int cash1, int cash2) {
+    public void trade(String player, String prop1, String prop2, int cash1, int cash2) {
         Player player1 = data.players.get(playerNum);
         Player player2 = data.getPlayerFromString(player);
         Property thisProp1 = player1.getPropertyFromString(prop1);
@@ -1479,6 +1499,8 @@ public class Board extends javax.swing.JFrame {
         player1.addProperty(thisProp2);
         player2.removeProperty(thisProp2);
         player2.addProperty(thisProp1);
+        //NOTE HELLO STEVEN IGNORE THIS WHILEE COMMENTING
+        //TRY TO DO THIS WIHTOUT CREATING PLAYER OBJECTS
         
     }
     private void manage(String prop1, int numHouse, boolean hotel) {
@@ -1718,46 +1740,48 @@ public class Board extends javax.swing.JFrame {
 
     private void trade_finishBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trade_finishBtnActionPerformed
         // TODO add your handling code here:
-        if((trade_cashGivenField.getText().equals("") || trade_propertyGiven.getText().equals("")) || (trade_cashReceivedField.getText().equals("") || trade_propertyReceivedField.getText().equals("")) || trade_tradeeField.getText().equals("")) {
-            tradeDialog.hide();
-            tradeDialog.dispose();
-            JOptionPane.showMessageDialog(this, "Empty Field");
-        }
-        String name = trade_tradeeField.getText();
-        Player tempPlay = data.getPlayerFromString(name);
-        if(tempPlay.getName().equals("Error")){
-            tradeDialog.hide();
-            tradeDialog.dispose();
-            JOptionPane.showMessageDialog(this, "Player not Found");
-        }
-        Property tempProp1 = data.players.get(playerNum).getPropertyFromString(trade_propertyGiven.getText());
-        if(tempProp1.getName().equals("error")) {
-            tradeDialog.hide();
-            tradeDialog.dispose();
-            JOptionPane.showMessageDialog(this, "Property not Found");
-        }
-        Property tempProp2 = tempPlay.getPropertyFromString(trade_propertyGiven.getText());
-        if(tempProp2.getName().equals("error")) {
-            tradeDialog.hide();
-            tradeDialog.dispose();
-            JOptionPane.showMessageDialog(this, "Property not Found");
-        }
-        tradeDialog.hide();
-        accept.show();
-        accept_giveCash.setText(trade_cashGiven.getText());
-        accept_getProperty.setText(trade_propertyReceived.getText());
-        accept_giveProperty.setText(trade_propertyGiven.getText());
-        accept_getCash.setText(trade_cashReceived.getText());
-        try {
-            Thread.sleep(5000);
-        } catch(InterruptedException e) {
-            accept.hide();
-            accept.dispose();
-            tradeDialog.dispose();
-            JOptionPane.showMessageDialog(this, "INTERRUPTED EXCEPTION");
-        }
-        if(accepted)
-            trade(trade_tradeeField.getText(), trade_propertyGiven.getText(), trade_propertyReceivedField.getText(), Integer.parseInt(trade_cashGiven.getText()), Integer.parseInt(trade_cashReceived.getText()));
+//        if((trade_cashGivenField.getText().equals("") || trade_propertyGiven.getText().equals("")) || (trade_cashReceivedField.getText().equals("") || trade_propertyReceivedField.getText().equals("")) || trade_tradeeField.getText().equals("")) {
+//            tradeDialog.hide();
+//            tradeDialog.dispose();
+//            JOptionPane.showMessageDialog(this, "Empty Field");
+//        }
+//        String name = trade_tradeeField.getText();
+//        Player tempPlay = data.getPlayerFromString(name);
+//        if(tempPlay.getName().equals("Error")){
+//            tradeDialog.hide();
+//            tradeDialog.dispose();
+//            JOptionPane.showMessageDialog(this, "Player not Found");
+//        }
+//        Property tempProp1 = data.players.get(playerNum).getPropertyFromString(trade_propertyGiven.getText());
+//        if(tempProp1.getName().equals("error")) {
+//            tradeDialog.hide();
+//            tradeDialog.dispose();
+//            JOptionPane.showMessageDialog(this, "Property not Found");
+//        }
+//        Property tempProp2 = tempPlay.getPropertyFromString(trade_propertyGiven.getText());
+//        if(tempProp2.getName().equals("error")) {
+//            tradeDialog.hide();
+//            tradeDialog.dispose();
+//            JOptionPane.showMessageDialog(this, "Property not Found");
+//        }
+//        tradeDialog.hide();
+//        accept.show();
+//        accept_giveCash.setText(trade_cashGiven.getText());
+//        accept_getProperty.setText(trade_propertyReceived.getText());
+//        accept_giveProperty.setText(trade_propertyGiven.getText());
+//        accept_getCash.setText(trade_cashReceived.getText());
+//        try {
+//            Thread.sleep(5000);
+//        } catch(InterruptedException e) {
+//            accept.hide();
+//            accept.dispose();
+//            tradeDialog.dispose();
+//            JOptionPane.showMessageDialog(this, "INTERRUPTED EXCEPTION");
+//        }
+//        if(accepted)
+          trade(trade_tradeeField.getText(), trade_propertyGiven.getText(), trade_propertyReceivedField.getText(), Integer.parseInt(trade_cashGivenField.getText()), Integer.parseInt(trade_cashReceivedField.getText()));
+          tradeDialog.setVisible(false);
+          tradeDialog.dispose();
     }//GEN-LAST:event_trade_finishBtnActionPerformed
 
     private void manage_updateCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manage_updateCashActionPerformed
@@ -1774,9 +1798,13 @@ public class Board extends javax.swing.JFrame {
 
     private void buyProperty_yesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyProperty_yesActionPerformed
         // TODO add your handling code here:
-        wantToBuy = true;
+        if((data.bank.properties.get(data.players.get(playerNum).getID() - 1).getType() == 5 || data.bank.properties.get(data.players.get(playerNum).getID() - 1).getType() == 6 || data.bank.properties.get(data.players.get(playerNum).getID() - 1).getType() == 7) && data.bank.canBuy(data.players.get(playerNum).getID())) {
+            data.players.get(playerNum).properties.add(data.bank.takeProperty(data.players.get(playerNum).getID() - 1));
+            data.players.get(playerNum).setCash(data.players.get(playerNum).getCash() - data.bank.getStaticProperty(data.players.get(playerNum).getID() - 1).getPrice());
+        }
         buyProperty.setVisible(false);
         buyProperty.dispose();
+        update();
     }//GEN-LAST:event_buyProperty_yesActionPerformed
 
     private void buyProperty_noActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyProperty_noActionPerformed
@@ -1785,7 +1813,13 @@ public class Board extends javax.swing.JFrame {
         buyProperty.setVisible(false);
         buyProperty.dispose();
     }//GEN-LAST:event_buyProperty_noActionPerformed
-	
+
+    private void buyPropertyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyPropertyButtonActionPerformed
+        // TODO add your handling code here:
+        buyProperty.setVisible(true);
+        buyProperty_name.setText("Would you like to buy: " + data.bank.staticProperties.get(data.players.get(playerNum).getID() - 1).getName());
+    }//GEN-LAST:event_buyPropertyButtonActionPerformed
+
 	private void drawPlayers() {
 		indexes[0] = data.players.get(0).getID();
 		indexes[1] = data.players.get(1).getID();
@@ -1851,6 +1885,7 @@ public class Board extends javax.swing.JFrame {
     private javax.swing.JLabel boardImage;
     private javax.swing.JPanel buttons;
     private javax.swing.JDialog buyProperty;
+    private javax.swing.JButton buyPropertyButton;
     private javax.swing.JLabel buyProperty_name;
     private javax.swing.JButton buyProperty_no;
     private javax.swing.JButton buyProperty_yes;
