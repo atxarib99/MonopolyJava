@@ -927,6 +927,10 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
+<<<<<<< HEAD
+=======
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+>>>>>>> 5aa273f6b761d087782b4bf87c9dc4da7854d7d7
                   <Component id="board" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">

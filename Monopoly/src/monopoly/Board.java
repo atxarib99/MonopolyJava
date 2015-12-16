@@ -1088,6 +1088,10 @@ public class Board extends javax.swing.JFrame {
         GameLayout.setHorizontalGroup(
             GameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(GameLayout.createSequentialGroup()
+<<<<<<< HEAD
+=======
+                .addContainerGap()
+>>>>>>> 5aa273f6b761d087782b4bf87c9dc4da7854d7d7
                 .addComponent(board, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(GameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
