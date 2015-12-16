@@ -1315,7 +1315,7 @@ public class Board extends javax.swing.JFrame {
                 location = jfc.getSelectedFile();
                 FileOutputStream fos = new FileOutputStream(file);
                 ObjectOutputStream oos = new ObjectOutputStream(fos);
-                oos.writeObject("COME BACK TO THIS");
+                oos.writeObject(data);
             } catch (IOException e) {
                 JOptionPane.showMessageDialog(this, e.toString());
             }
@@ -1324,6 +1324,8 @@ public class Board extends javax.swing.JFrame {
 
     private void file_closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_file_closeActionPerformed
         // TODO add your handling code here:
+		file_saveActionPerformed(evt);
+		System.exit(0);
     }//GEN-LAST:event_file_closeActionPerformed
 
     private void rollDiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rollDiceActionPerformed
