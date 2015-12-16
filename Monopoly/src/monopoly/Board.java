@@ -1430,7 +1430,7 @@ public class Board extends javax.swing.JFrame {
         if(data.bank.getProperty(data.players.get(playerNum).getID()).getType() == 5) {
             if(!data.bank.getProperty(data.players.get(playerNum).getID()).getName().equals("Error")) {
                 for(int i = 0; i < data.players.size(); i++) {
-                    for(int k = 0; k < data.players.get(i).properties.size(); i++) {
+                    for(int k = 0; k < data.players.get(i).properties.size() - 1; i++) {
                         if(data.bank.getStaticProperty(data.players.get(playerNum).getID()).equals(data.players.get(i).properties.get(k))) {
                             data.players.get(playerNum).setCash(data.players.get(playerNum).getCash() - data.players.get(i).properties.get(k).getRent0());
                             data.players.get(i).setCash(data.players.get(i).getCash() + data.players.get(i).properties.get(k).getRent0());
@@ -1558,6 +1558,8 @@ public class Board extends javax.swing.JFrame {
         int player2CashGive = cash2;
         player1.setCash(player1.getCash() + player2CashGive);
         player2.setCash(player2.getCash() + player1CashGive);
+        player1.setCash(player1.getCash() - player1CashGive);
+        player2.setCash(player2.getCash() - player2CashGive);
         player1.removeProperty(thisProp1);
         player1.addProperty(thisProp2);
         player2.removeProperty(thisProp2);
@@ -1890,6 +1892,7 @@ public class Board extends javax.swing.JFrame {
           trade(trade_tradeeField.getText(), trade_propertyGivenField.getText(), trade_propertyReceivedField.getText(), Integer.parseInt(trade_cashGivenField.getText()), Integer.parseInt(trade_cashReceivedField.getText()));
           tradeDialog.setVisible(false);
           tradeDialog.dispose();
+          update();
     }//GEN-LAST:event_trade_finishBtnActionPerformed
 
 	/* This will keep the cash required to "manage" the player's property updated
