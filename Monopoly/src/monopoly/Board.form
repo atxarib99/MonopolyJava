@@ -702,9 +702,6 @@
     </Container>
     <Container class="javax.swing.JDialog" name="buyProperty">
       <Properties>
-        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[344, 115]"/>
-        </Property>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[344, 115]"/>
         </Property>

@@ -62,8 +62,8 @@ public class Board extends javax.swing.JFrame {
         isPlayer3 = false;
         isPlayer4 = false;
         wantToBuy = false;
-		indexes = new int[4];
-		drawPlayers();
+	indexes = new int[4];
+	drawPlayers();
     }
 
     /**
@@ -616,7 +616,6 @@ public class Board extends javax.swing.JFrame {
                 .addContainerGap(64, Short.MAX_VALUE))
         );
 
-        buyProperty.setMaximumSize(new java.awt.Dimension(344, 115));
         buyProperty.setMinimumSize(new java.awt.Dimension(344, 115));
         buyProperty.setResizable(false);
 
@@ -1517,6 +1516,7 @@ public class Board extends javax.swing.JFrame {
     private void tradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tradeActionPerformed
         // TODO add your handling code here:
         tradeDialog.show();
+        trade_traderName.setText(data.players.get(playerNum).getName());
     }//GEN-LAST:event_tradeActionPerformed
 
 	/* When a player wishes to manage his properties, he can add houses or
@@ -1560,11 +1560,10 @@ public class Board extends javax.swing.JFrame {
         player2.setCash(player2.getCash() + player1CashGive);
         player1.setCash(player1.getCash() - player1CashGive);
         player2.setCash(player2.getCash() - player2CashGive);
-        player1.removeProperty(thisProp1);
         player1.addProperty(thisProp2);
-        player2.removeProperty(thisProp2);
         player2.addProperty(thisProp1);
-        
+        player1.removeProperty(thisProp1);
+        player2.removeProperty(thisProp2);
     }
 	
 	/* This will add houses and hotel costs to the total amount that one will
@@ -1622,7 +1621,7 @@ public class Board extends javax.swing.JFrame {
 				tab1.addRow(content);
 			}
 			player1_cash.setText(data.players.get(0).getCash() + "");
-			p1Index.setText(data.players.get(0).getID() + "");
+			p1Index.setText(data.players.get(0).getID() + " : " + data.bank.getStaticProperty(data.players.get(0).getID() - 1).getName());
 		}
 		if (isPlayer2) {
 			ArrayList<Property> temp2 = data.players.get(1).getProperties();
@@ -1631,7 +1630,7 @@ public class Board extends javax.swing.JFrame {
 				tab2.addRow(content);
 			}
 			player2_cash.setText(data.players.get(1).getCash() + "");
-			p2Index.setText(data.players.get(1).getID() + "");
+			p2Index.setText(data.players.get(1).getID() + " : " + data.bank.getStaticProperty(data.players.get(1).getID() - 1).getName());
 		}
 		if (isPlayer3) {
 			ArrayList<Property> temp3 = data.players.get(2).getProperties();
@@ -1640,7 +1639,7 @@ public class Board extends javax.swing.JFrame {
 				tab3.addRow(content);
 			}
 			player3_cash.setText(data.players.get(2).getCash() + "");
-			p3Index.setText(data.players.get(2).getID() + "");
+			p3Index.setText(data.players.get(2).getID() + " : " + data.bank.getStaticProperty(data.players.get(2).getID() - 1).getName());
 		}
 		if (isPlayer4) {
 			ArrayList<Property> temp4 = data.players.get(3).getProperties();
@@ -1649,7 +1648,7 @@ public class Board extends javax.swing.JFrame {
 				tab4.addRow(content);
 			}
 			player4_cash.setText(data.players.get(3).getCash() + "");
-			p4Index.setText(data.players.get(3).getID() + "");
+			p4Index.setText(data.players.get(3).getID() + " : " + data.bank.getStaticProperty(data.players.get(3).getID() - 1).getName());
 		}
     }
 	
