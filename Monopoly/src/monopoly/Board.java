@@ -1506,7 +1506,9 @@ public class Board extends javax.swing.JFrame {
         player3_cash.setText(data.players.get(2).getCash() + "");
         player4_cash.setText(data.players.get(3).getCash() + "");
 		
-		indexOfPlayers.setText("INDEX OF PLAYERS: " + data.players.get(0).getID() + ", " + data.players.get(1).getID() + ", " + data.players.get(2).getID() + ", " + data.players.get(3).getID());
+		indexOfPlayers.setText("INDEX OF PLAYERS: " + data.players.get(0).getID()
+				+ ", " + data.players.get(1).getID() + ", " + data.players.get(2).getID()
+				+ ", " + data.players.get(3).getID());
     }
 	
 	public void reset() {
