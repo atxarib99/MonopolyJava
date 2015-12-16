@@ -40,31 +40,33 @@ public class ChanceCards {
     }
 	
 	/* Switch case that gives each chance card type a specific function */
-    public void doAction(Player player, int id, Board board, Data data) {
+    public String doAction(Player player, int id, Board board, Data data) {
         switch(id) {
             case 1: player.setID(0);
-            player.setCash(player.getCash() + 200); break;
-            case 2: player.setID(25); break;
+            player.setCash(player.getCash() + 200); 
+            return names[0];
+            case 2: player.setID(25); return names[1];
             case 3: player.setID(nextUtil(player)); 
 //            if(board.bank.properties.contains(board.properties.get(player.getID())))
             //implement asking to buy
-                break;
-            case 4: player.setID(nextRailroad(player)); break;
-            case 5: player.setID(nextRailroad(player)); break;
-            case 6: player.setID(12); break;
-            case 7: player.setCash(player.getCash() + 50); break;
-            case 8: player.jailCard = true; break;
-            case 9: player.setID(player.getID() - 3); break;
-            case 10: player.setID(11); break;
-            case 11: getRepairs(player, board); break;
-            case 12: player.setCash(player.getCash() - 15); break;
-            case 13: player.setID(6); break;
-            case 14: player.setID(40); break;
-            case 15: player.setCash(player.getCash() - (data.players.size() * 50)); break;
-            case 16: player.setCash(player.getCash() + 150); break;
-            case 17: player.setCash(player.getCash() + 100); break;
+                return names[2];
+            case 4: player.setID(nextRailroad(player)); return names[3];
+            case 5: player.setID(nextRailroad(player)); return names[4];
+            case 6: player.setID(12); return names[5];
+            case 7: player.setCash(player.getCash() + 50); return names[6];
+            case 8: player.jailCard = true; return names[7];
+            case 9: player.setID(player.getID() - 3); return names[8];
+            case 10: player.setID(11); return names[9];
+            case 11: getRepairs(player, board); return names[10];
+            case 12: player.setCash(player.getCash() - 15); return names[11];
+            case 13: player.setID(6); return names[12];
+            case 14: player.setID(40); return names[13];
+            case 15: player.setCash(player.getCash() - (data.players.size() * 50)); return names[14];
+            case 16: player.setCash(player.getCash() + 150); return names[15];
+            case 17: player.setCash(player.getCash() + 100); return names[16];
             
         }
+        return "error";
     }
 	
 	/* method that returns the next possible utility to land on for the chance

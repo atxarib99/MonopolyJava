@@ -40,28 +40,29 @@ public class CommunityCards {
     }
     
     /* Switch case that gives each community chest card type a specific function */
-    public void doAction(Player player, int id, Data data, Bank bank) {
+    public String doAction(Player player, int id, Data data, Bank bank) {
         switch(id) {
             case 1: player.setID(0);
-            player.setCash(player.getCash() + 200); break;
-            case 2: player.setCash(player.getCash() + 75); break;
-            case 3: player.setCash(player.getCash() - 1); break;
-            case 4: player.jailCard = true; break;
-            case 5: player.setID(11); break;
-            case 6: player.setCash(player.getCash() + (data.players.size() * 10)); break;
-            case 7: player.setCash(player.getCash() + (data.players.size() * 50)); break;
-            case 8: player.setCash(player.getCash() + 20); break;
-            case 9: player.setCash(player.getCash() + 100); break;
-            case 10: player.setCash(player.getCash() - 100); break;
-            case 11: player.setCash(player.getCash() - 50); break;
-            case 12: player.setCash(player.getCash() + 25); break;
-            case 13: getRepairs(player, data, bank); break;
-            case 14: player.setCash(player.getCash() + 10); break;
-            case 15: player.setCash(player.getCash() + 100); break;
-            case 16: player.setCash(player.getCash() + 50); break;
-            case 17: player.setCash(player.getCash() + 100); break;
+            player.setCash(player.getCash() + 200); return names[0];
+            case 2: player.setCash(player.getCash() + 75); return names[1];
+            case 3: player.setCash(player.getCash() - 1); return names[2];
+            case 4: player.jailCard = true; return names[3];
+            case 5: player.setID(11); return names[4];
+            case 6: player.setCash(player.getCash() + (data.players.size() * 10)); return names[5];
+            case 7: player.setCash(player.getCash() + (data.players.size() * 50)); return names[6];
+            case 8: player.setCash(player.getCash() + 20); return names[7];
+            case 9: player.setCash(player.getCash() + 100); return names[8];
+            case 10: player.setCash(player.getCash() - 100); return names[9];
+            case 11: player.setCash(player.getCash() - 50); return names[10];
+            case 12: player.setCash(player.getCash() + 25); return names[11];
+            case 13: getRepairs(player, data, bank); return names[12];
+            case 14: player.setCash(player.getCash() + 10); return names[13];
+            case 15: player.setCash(player.getCash() + 100); return names[14];
+            case 16: player.setCash(player.getCash() + 50); return names[15];
+            case 17: player.setCash(player.getCash() + 100); return names[16];
             
         }
+        return "error";
     }
     
     /* A specific card requires the player to "repair" each house and hotel

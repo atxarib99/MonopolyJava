@@ -1427,29 +1427,16 @@ public class Board extends javax.swing.JFrame {
 		//or he must pay the person who owns that property depending on the number of
 		//houses/hotels owned.
         if(data.bank.getProperty(data.players.get(playerNum).getID()).getType() == 5) {
-            if(!data.bank.getProperty(data.players.get(playerNum).getID()).getName().equals("Error")) {
-                for(int i = 0; i < data.players.size(); i++) {
-                    for(int k = 0; k < data.players.get(i).properties.size() - 1; i++) {
-                        if(data.bank.getStaticProperty(data.players.get(playerNum).getID()).equals(data.players.get(i).properties.get(k))) {
-                            data.players.get(playerNum).setCash(data.players.get(playerNum).getCash() - data.players.get(i).properties.get(k).getRent0());
-                            data.players.get(i).setCash(data.players.get(i).getCash() + data.players.get(i).properties.get(k).getRent0());
-                        }
+            for(int i = 0; i < data.players.size(); i++) {
+                for(int k = 0; k < data.players.get(i).properties.size() - 1; i++) {
+                    if(data.bank.getStaticProperty(data.players.get(playerNum).getID()).equals(data.players.get(i).properties.get(k))) {
+                        int rent = data.players.get(i).properties.get(k).getRent0();
+                        JOptionPane.showMessageDialog(this, "rent is " + rent);
+                        data.players.get(playerNum).setCash(data.players.get(playerNum).getCash() - rent);
+                        data.players.get(i).setCash(data.players.get(i).getCash() + rent);
                     }
                 }
-            } else {
-            buyProperty.setVisible(true);
-            try {
-                Thread.sleep(5000);
-            } catch(InterruptedException e) {
-                buyProperty.setVisible(false);
-                buyProperty.dispose();
-                JOptionPane.showMessageDialog(this, "INTERRUPTED EXCEPTION");
             }
-            if(wantToBuy) {
-                data.players.get(playerNum).addProperty(data.bank.getProperty(data.players.get(playerNum).getID()));
-                data.bank.properties.remove(data.bank.getProperty(data.players.get(playerNum).getID()));
-            }
-        }
         } 
 		
 		//For these spots, the player could purchase a railroad, or be required
@@ -1500,11 +1487,15 @@ public class Board extends javax.swing.JFrame {
         if(data.bank.getProperty(data.players.get(playerNum).getID()).getType() == 9) {
             if(data.players.get(playerNum).getID() == 8 || data.players.get(playerNum).getID() == 23 || data.players.get(playerNum).getID() == 37) {
                 int got = data.chanceCards.getRandomID();
-                data.chanceCards.doAction(data.players.get(playerNum), got, this, data);
+                String display = data.chanceCards.doAction(data.players.get(playerNum), got, this, data);
+                JOptionPane.showMessageDialog(this, display);
+                update();
             }
-            if(data.players.get(playerNum).getID() == 8 || data.players.get(playerNum).getID() == 23 || data.players.get(playerNum).getID() == 37) {
+            if(data.players.get(playerNum).getID() == 3 || data.players.get(playerNum).getID() == 18 || data.players.get(playerNum).getID() == 34) {
                 int got = data.communityCards.getRandomID();
-                data.communityCards.doAction(data.players.get(playerNum), got, data, data.bank);
+                String display = data.communityCards.doAction(data.players.get(playerNum), got, data, data.bank);
+                JOptionPane.showMessageDialog(this, display);
+                update();
             }
         }
         update();
@@ -1539,6 +1530,10 @@ public class Board extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "YOU LOSE!");
             data.players.remove(data.players.get(playerNum));
         }
+        if(data.players.size() == 1) {
+            JOptionPane.showMessageDialog(this, "Game Over! Winning Player: " + data.players.get(0).getName());
+            System.exit(0);
+        }
         if(playerNum == data.players.size() - 1)
             playerNum = 0;
         else
@@ -1552,18 +1547,24 @@ public class Board extends javax.swing.JFrame {
     public void trade(String player, String prop1, String prop2, int cash1, int cash2) {
         Player player1 = data.players.get(playerNum);
         Player player2 = data.getPlayerFromString(player);
-        Property thisProp1 = player1.getPropertyFromString(prop1);
-        Property thisProp2 = player2.getPropertyFromString(prop2);
+        Property thisProp1;
+        thisProp1 = player1.getPropertyFromString(prop1);
+        Property thisProp2;
+        thisProp2 = player2.getPropertyFromString(prop2);
         int player1CashGive = cash1;
         int player2CashGive = cash2;
         player1.setCash(player1.getCash() + player2CashGive);
         player2.setCash(player2.getCash() + player1CashGive);
         player1.setCash(player1.getCash() - player1CashGive);
         player2.setCash(player2.getCash() - player2CashGive);
-        player1.addProperty(thisProp2);
-        player2.addProperty(thisProp1);
-        player1.removeProperty(thisProp1);
-        player2.removeProperty(thisProp2);
+        if(!prop2.equals(""))
+            player1.addProperty(thisProp2);
+        if(!prop1.equals(""))
+            player2.addProperty(thisProp1);
+        if(!prop1.equals(""))
+            player1.removeProperty(thisProp1);
+        if(!prop2.equals(""))
+            player2.removeProperty(thisProp2);
     }
 	
 	/* This will add houses and hotel costs to the total amount that one will
@@ -1890,10 +1891,30 @@ public class Board extends javax.swing.JFrame {
 //            JOptionPane.showMessageDialog(this, "INTERRUPTED EXCEPTION");
 //        }
 //        if(accepted)
-          trade(trade_tradeeField.getText(), trade_propertyGivenField.getText(), trade_propertyReceivedField.getText(), Integer.parseInt(trade_cashGivenField.getText()), Integer.parseInt(trade_cashReceivedField.getText()));
-          tradeDialog.setVisible(false);
-          tradeDialog.dispose();
-          update();
+        boolean goodSoFar = true;
+        if(trade_tradeeField.getText().equals("")) {
+            goodSoFar = false;
+            JOptionPane.showMessageDialog(this, "Incorrect info for player to trade with");
+        }
+        int cashGive = 0;
+        int cashTake = 0;
+        try {
+            cashGive = Integer.parseInt(trade_cashGivenField.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Incorrect entry on cash to give");
+            goodSoFar = false;
+        }
+        try {
+            cashTake = Integer.parseInt(trade_cashReceivedField.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Incorrect entry on cash to take");
+            goodSoFar = false;
+        }
+        if(goodSoFar)
+            trade(trade_tradeeField.getText(), trade_propertyGivenField.getText(), trade_propertyReceivedField.getText(), cashGive, cashTake);
+        tradeDialog.setVisible(false);
+        tradeDialog.dispose();
+        update();
     }//GEN-LAST:event_trade_finishBtnActionPerformed
 
 	/* This will keep the cash required to "manage" the player's property updated
@@ -1916,13 +1937,9 @@ public class Board extends javax.swing.JFrame {
 	 */
     private void buyProperty_yesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyProperty_yesActionPerformed
         // TODO add your handling code here:
-        if((data.bank.properties.get(data.players.get(playerNum).getID() - 1).getType() == 5
-				|| data.bank.properties.get(data.players.get(playerNum).getID() - 1).getType() == 6
-				|| data.bank.properties.get(data.players.get(playerNum).getID() - 1).getType() == 7)
-				&& data.bank.canBuy(data.players.get(playerNum).getID() - 1)) {
+        if(((data.bank.properties.get(data.players.get(playerNum).getID() - 1).getType() == 5 || data.bank.properties.get(data.players.get(playerNum).getID() - 1).getType() == 6 || data.bank.properties.get(data.players.get(playerNum).getID() - 1).getType() == 7) && (data.bank.canBuy(data.players.get(playerNum).getID() - 1)))) {
             data.players.get(playerNum).properties.add(data.bank.takeProperty(data.players.get(playerNum).getID() - 1));
-            data.players.get(playerNum).setCash(data.players.get(playerNum).getCash()
-					- data.bank.getStaticProperty(data.players.get(playerNum).getID() - 1).getPrice());
+            data.players.get(playerNum).setCash(data.players.get(playerNum).getCash() - data.bank.getStaticProperty(data.players.get(playerNum).getID() - 1).getPrice());
         }
         buyProperty.setVisible(false);
         buyProperty.dispose();
