@@ -150,4 +150,12 @@ public class Bank {
         properties.remove(index);
         return property;
     }
+    public boolean canBuy(int id) {
+        for(int i = 0; i < properties.size(); i++) {
+            if(properties.get(i).getId() == id) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
