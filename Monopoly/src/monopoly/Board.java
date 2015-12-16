@@ -46,7 +46,7 @@ public class Board extends javax.swing.JFrame {
         playerNum = 0;
         canRoll = true;
         chosen = false;
-	addHotel = false;
+		addHotel = false;
         isPlayer1 = false;
         isPlayer2 = false;
         isPlayer3 = false;
@@ -591,8 +591,8 @@ public class Board extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(800, 800));
-        setMinimumSize(new java.awt.Dimension(800, 800));
+        setMaximumSize(new java.awt.Dimension(1114, 960));
+        setMinimumSize(new java.awt.Dimension(1114, 960));
         setResizable(false);
 
         Player1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -665,7 +665,7 @@ public class Board extends javax.swing.JFrame {
                         .addComponent(player1_cashLabel)
                         .addGap(0, 0, 0)
                         .addComponent(player1_cash)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                         .addComponent(player1_jailCard))
                     .addGroup(Player1Layout.createSequentialGroup()
                         .addGroup(Player1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -955,7 +955,7 @@ public class Board extends javax.swing.JFrame {
                 .addGroup(Player4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(Player4Layout.createSequentialGroup()
                         .addComponent(player4_properties, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 112, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(Player4Layout.createSequentialGroup()
                         .addGroup(Player4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(player4_name)
@@ -1004,7 +1004,7 @@ public class Board extends javax.swing.JFrame {
         GameLayout.setHorizontalGroup(
             GameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(GameLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(10, 10, 10)
                 .addComponent(Board)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(board, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1013,7 +1013,7 @@ public class Board extends javax.swing.JFrame {
                     .addComponent(Player2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Player3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Player4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Player1, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE))
+                    .addComponent(Player1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         GameLayout.setVerticalGroup(
@@ -1165,22 +1165,12 @@ public class Board extends javax.swing.JFrame {
 
     private void file_newGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_file_newGameActionPerformed
         // TODO add your handling code here:
-        data = new Data();
         startGame_addPlayers.dispose();
         startGame_player1Name.setText("");
         startGame_player2Name.setText("");
         startGame_player3Name.setText("");
         startGame_player4Name.setText("");
         startGame_addPlayers.setVisible(true);
-        update();
-        player1_name.setText("Name:");
-        player2_name.setText("Name:");
-        player3_name.setText("Name:");
-        player4_name.setText("Name:");
-        player1_cash.setText("$1500");
-        player2_cash.setText("$1500");
-        player3_cash.setText("$1500");
-        player4_cash.setText("$1500");
     }//GEN-LAST:event_file_newGameActionPerformed
 
     private void file_openGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_file_openGameActionPerformed
@@ -1389,11 +1379,30 @@ public class Board extends javax.swing.JFrame {
         player2_cash.setText(data.players.get(1).getCash() + "");
         player3_cash.setText(data.players.get(2).getCash() + "");
         player4_cash.setText(data.players.get(3).getCash() + "");
-        
-        
-        
-        
     }
+	
+	public void reset() {
+		DefaultTableModel tab1 = (DefaultTableModel) player1_propertiesTable.getModel();
+        DefaultTableModel tab2 = (DefaultTableModel) player2_propertiesTable.getModel();
+        DefaultTableModel tab3 = (DefaultTableModel) player3_propertiesTable.getModel();
+        DefaultTableModel tab4 = (DefaultTableModel) player4_propertiesTable.getModel();
+        while(tab1.getRowCount() > 0) {
+            tab1.removeRow(0);
+        }
+        while(tab2.getRowCount() > 0) {
+            tab2.removeRow(0);
+        }
+        while(tab3.getRowCount() > 0) {
+            tab3.removeRow(0);
+        }
+        while(tab4.getRowCount() > 0) {
+            tab4.removeRow(0);
+        }
+		player1_cash.setText("0");
+        player2_cash.setText("0");
+        player3_cash.setText("0");
+        player4_cash.setText("0");
+	}
 
     private void trade_propertyGivenFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trade_propertyGivenFieldActionPerformed
         // TODO add your handling code here:
@@ -1485,14 +1494,18 @@ public class Board extends javax.swing.JFrame {
 
     private void startGame_finishAddingPlayersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startGame_finishAddingPlayersActionPerformed
         // TODO add your handling code here:
+		if (!isPlayer1 && !isPlayer2 && !isPlayer3 && !isPlayer4)
+			JOptionPane.showMessageDialog(this, "Please Add At Least One Player");
+		else {
+		data = new Data();
         player1_name.setText("Name:");
         player2_name.setText("Name:");
         player3_name.setText("Name:");
         player4_name.setText("Name:");
-        player1_cash.setText("$1500");
-        player2_cash.setText("$1500");
-        player3_cash.setText("$1500");
-        player4_cash.setText("$1500");
+        player1_cash.setText("1500");
+        player2_cash.setText("1500");
+        player3_cash.setText("1500");
+        player4_cash.setText("1500");
         if (isPlayer1) {
             data.players.add(new Player(startGame_player1Name.getText()));
             player1_name.setText(player1_name.getText() + startGame_player1Name.getText());
@@ -1522,6 +1535,8 @@ public class Board extends javax.swing.JFrame {
             Player4.setVisible(false);
         }
         startGame_addPlayers.setVisible(false);
+		update();
+		}
     }//GEN-LAST:event_startGame_finishAddingPlayersActionPerformed
 
     private void trade_finishBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trade_finishBtnActionPerformed
