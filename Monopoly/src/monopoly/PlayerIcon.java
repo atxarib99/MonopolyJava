@@ -26,6 +26,7 @@ public class PlayerIcon extends JPanel {
 	Image boot = null;
 	Image dog = null;
 	Image hat = null;
+	Image base = null;
 	
 	PlayerIcon() {
 		try {
@@ -44,6 +45,10 @@ public class PlayerIcon extends JPanel {
 		hat = ImageIO.read(new File("Monopoly_Hat.jpg"));
 		} catch (IOException e) {
 		}
+		try {
+			base = ImageIO.read(new File("MonopolyBoard.jpg"));
+		} catch (IOException e) {
+		}
         repaint();
 	}
 	
@@ -60,6 +65,6 @@ public class PlayerIcon extends JPanel {
 //		graphics.drawImage(boot, null, 776, 736);
 //		graphics.drawImage(dog, null, 716, 790);
 //		graphics.drawImage(hat, null, 776, 790);
-		graphics.drawImage(car, 0, 0, this);
+		graphics.drawImage(base, 0, 0, this);
     }
 }

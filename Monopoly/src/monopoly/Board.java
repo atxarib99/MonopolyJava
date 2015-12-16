@@ -45,7 +45,7 @@ public class Board extends javax.swing.JFrame {
     public final String NOJAILCARD = "No Get Out Of Jail Free Card";
     public final String JAILCARDNOJAIL = "Currently Not In Jail";
     public final String JAILCARDJAIL = "Use Get Out Of Jail Free Card";
-	int[] indexes = new int[4];
+	int[] indexes;
 	
 	/* Sets the default values of the variables for when players just enter the
 	 * game
@@ -62,6 +62,8 @@ public class Board extends javax.swing.JFrame {
         isPlayer3 = false;
         isPlayer4 = false;
         wantToBuy = false;
+		indexes = new int[4];
+		drawPlayers();
     }
 
     /**
@@ -126,7 +128,6 @@ public class Board extends javax.swing.JFrame {
         buyProperty_no = new javax.swing.JButton();
         buyProperty_name = new javax.swing.JLabel();
         Game = new javax.swing.JPanel();
-        Board = new javax.swing.JLabel();
         Player1 = new javax.swing.JPanel();
         player1_name = new javax.swing.JLabel();
         player1_cashLabel = new javax.swing.JLabel();
@@ -156,7 +157,7 @@ public class Board extends javax.swing.JFrame {
         player4_propertiesTable = new javax.swing.JTable();
         player4_jailCard = new javax.swing.JButton();
         board = new PlayerIcon();
-        boardImage = new javax.swing.JLabel();
+        BoardIcon = new javax.swing.JLabel();
         buttons = new javax.swing.JPanel();
         rollDice = new javax.swing.JButton();
         trade = new javax.swing.JButton();
@@ -1059,17 +1060,27 @@ public class Board extends javax.swing.JFrame {
                 .addGap(12, 12, 12))
         );
 
-        boardImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/monopoly/Images/MonopolyBoard.jpg"))); // NOI18N
+        BoardIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/monopoly/Images/MonopolyBoard.jpg"))); // NOI18N
 
         javax.swing.GroupLayout boardLayout = new javax.swing.GroupLayout(board);
         board.setLayout(boardLayout);
         boardLayout.setHorizontalGroup(
             boardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(boardImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 820, Short.MAX_VALUE)
+            .addGroup(boardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(boardLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(BoardIcon)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         boardLayout.setVerticalGroup(
             boardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(boardImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 822, Short.MAX_VALUE)
+            .addGroup(boardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(boardLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(BoardIcon)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout GameLayout = new javax.swing.GroupLayout(Game);
@@ -1077,9 +1088,7 @@ public class Board extends javax.swing.JFrame {
         GameLayout.setHorizontalGroup(
             GameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(GameLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(Board)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE)
                 .addComponent(board, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(GameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1091,7 +1100,6 @@ public class Board extends javax.swing.JFrame {
         );
         GameLayout.setVerticalGroup(
             GameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Board, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(GameLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(GameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -1103,7 +1111,8 @@ public class Board extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(Player3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(Player4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(Player4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         rollDice.setFont(new java.awt.Font("Tekton Pro", 0, 36)); // NOI18N
@@ -1234,33 +1243,35 @@ public class Board extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(Game, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, 0)
+                        .addComponent(Game, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(indexOfPlayers)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(p1Index, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(p2Index, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(p3Index, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(p4Index, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(buyPropertyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(buttons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(indexOfPlayers)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(p1Index, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(p2Index, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(p3Index, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(p4Index, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(buyPropertyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(Game, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(0, 0, 0)
                 .addComponent(buttons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1293,10 +1304,6 @@ public class Board extends javax.swing.JFrame {
         canRoll = true;
         chosen = false;
         addHotel = false;
-        isPlayer1 = false;
-        isPlayer2 = false;
-        isPlayer3 = false;
-        isPlayer4 = false;
         wantToBuy = false;
     }//GEN-LAST:event_file_newGameActionPerformed
 
@@ -1907,9 +1914,13 @@ public class Board extends javax.swing.JFrame {
 	 */
     private void buyProperty_yesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyProperty_yesActionPerformed
         // TODO add your handling code here:
-        if((data.bank.properties.get(data.players.get(playerNum).getID() - 1).getType() == 5 || data.bank.properties.get(data.players.get(playerNum).getID() - 1).getType() == 6 || data.bank.properties.get(data.players.get(playerNum).getID() - 1).getType() == 7) && data.bank.canBuy(data.players.get(playerNum).getID())) {
+        if((data.bank.properties.get(data.players.get(playerNum).getID() - 1).getType() == 5
+				|| data.bank.properties.get(data.players.get(playerNum).getID() - 1).getType() == 6
+				|| data.bank.properties.get(data.players.get(playerNum).getID() - 1).getType() == 7)
+				&& data.bank.canBuy(data.players.get(playerNum).getID() - 1)) {
             data.players.get(playerNum).properties.add(data.bank.takeProperty(data.players.get(playerNum).getID() - 1));
-            data.players.get(playerNum).setCash(data.players.get(playerNum).getCash() - data.bank.getStaticProperty(data.players.get(playerNum).getID() - 1).getPrice());
+            data.players.get(playerNum).setCash(data.players.get(playerNum).getCash()
+					- data.bank.getStaticProperty(data.players.get(playerNum).getID() - 1).getPrice());
         }
         buyProperty.setVisible(false);
         buyProperty.dispose();
@@ -1938,10 +1949,18 @@ public class Board extends javax.swing.JFrame {
 	/* Will keep the player's icon on the field currently updated.
 	 */
 	private void drawPlayers() {
-		indexes[0] = data.players.get(0).getID();
-		indexes[1] = data.players.get(1).getID();
-		indexes[2] = data.players.get(2).getID();
-		indexes[3] = data.players.get(3).getID();
+		if (isPlayer1) {
+			indexes[0] = data.players.get(0).getID();
+		}
+		if (isPlayer2) {
+			indexes[1] = data.players.get(1).getID();
+		}
+		if (isPlayer3) {
+			indexes[2] = data.players.get(2).getID();
+		}
+		if (isPlayer4) {
+			indexes[3] = data.players.get(3).getID();
+		}
 		PlayerIcon a = (PlayerIcon) board;
 		a.updatePlayers(indexes);
 		board = a;
@@ -1982,7 +2001,7 @@ public class Board extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Board;
+    private javax.swing.JLabel BoardIcon;
     private javax.swing.JPanel Game;
     private javax.swing.JPanel Player1;
     private javax.swing.JPanel Player2;
@@ -1999,7 +2018,6 @@ public class Board extends javax.swing.JFrame {
     private javax.swing.JLabel accept_giveProperty;
     private javax.swing.JLabel accept_traderName;
     private javax.swing.JPanel board;
-    private javax.swing.JLabel boardImage;
     private javax.swing.JPanel buttons;
     private javax.swing.JDialog buyProperty;
     private javax.swing.JButton buyPropertyButton;
