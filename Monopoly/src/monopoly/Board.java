@@ -1317,6 +1317,7 @@ public class Board extends javax.swing.JFrame {
         else
             JOptionPane.showMessageDialog(this, "You've already rolled");
         canRoll = false;
+		update();
         if(data.bank.getProperty(data.players.get(playerNum).getID()).getType() == 3) {
             data.players.get(playerNum).setCash(data.players.get(playerNum).getCash() + data.bank.getTaxPool());
         }
@@ -1324,8 +1325,8 @@ public class Board extends javax.swing.JFrame {
             data.players.get(playerNum).setID(10);
             data.players.get(playerNum).inJail = true;
         }
-        if(!data.bank.getProperty(data.players.get(playerNum).getID()).getName().equals("Error")) {
-            if(data.bank.getProperty(data.players.get(playerNum).getID()).getId() == 5) {
+        if(data.bank.getProperty(data.players.get(playerNum).getID()).getType() == 5) {
+            if(!data.bank.getProperty(data.players.get(playerNum).getID()).getName().equals("Error")) {
                 for(int i = 0; i < data.players.size(); i++) {
                     for(int k = 0; k < data.players.get(i).properties.size(); i++) {
                         if(data.bank.getStaticProperty(data.players.get(playerNum).getID()).equals(data.players.get(i).properties.get(k))) {
@@ -1421,7 +1422,7 @@ public class Board extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "YOU LOSE!");
             data.players.remove(data.players.get(playerNum));
         }
-        if(playerNum == data.players.size())
+        if(playerNum == data.players.size() - 1)
             playerNum = 0;
         else
             playerNum += 1;

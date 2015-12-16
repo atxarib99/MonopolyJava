@@ -18,7 +18,7 @@ public class Bank {
     private int taxPool;
     public ArrayList<Property> properties;
     public ArrayList<Property> staticProperties;
-    Property error = new Property(0, "Error", Color.white, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, false, false);
+    Property error = new Property(0, "Error", Color.white, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, false);
     
     /* sets the tax money pool and all the properties at the start of the game */
     public Bank() {
