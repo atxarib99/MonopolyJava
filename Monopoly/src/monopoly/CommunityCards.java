@@ -5,6 +5,8 @@
  */
 package monopoly;
 
+import java.util.Random;
+
 /**
  *
  * @author Arib
@@ -76,5 +78,10 @@ public class CommunityCards {
         }
         returnable = house + hotel;
         return returnable;
+    }
+        public int getRandomID() {
+        Random random = new Random();
+        int id = random.nextInt(names.length);
+        return id;
     }
 }

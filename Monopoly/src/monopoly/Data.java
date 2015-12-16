@@ -19,6 +19,8 @@ public class Data {
     Bank bank;
     ArrayList<Player> players;
     Player error = new Player("Error");
+    ChanceCards chanceCards = new ChanceCards();
+    CommunityCards communityCards = new CommunityCards();
     public Data() {
         bank = new Bank();
         players = new ArrayList<Player>();

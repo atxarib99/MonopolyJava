@@ -14,22 +14,22 @@ import java.awt.Color;
  */
 public class Property {
     //variables for the characteristics of the properties
-    private int     type;
-    private int     rent0;
-    private int     rent1;
-    private int     rent2;
-    private int     rent3;
-    private int     rent4;
-    private int     hotel;
-    private int     housePrice;
-    private int     id;
+    private final int     type;
+    private final int     rent0;
+    private final int     rent1;
+    private final int     rent2;
+    private final int     rent3;
+    private final int     rent4;
+    private final int     hotel;
+    private final int     housePrice;
+    private final int     id;
     private int     houses;
     private boolean hotels;
     private boolean isMorgaged;    
-    private String  name;
-    private Color   color;
-    private int     price;
-    private int     morgage;
+    private final String  name;
+    private final Color   color;
+    private final int     price;
+    private final int     morgage;
         //1 : go
         //2 : jail
         //3 : free parking

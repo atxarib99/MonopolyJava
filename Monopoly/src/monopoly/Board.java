@@ -1274,7 +1274,54 @@ public class Board extends javax.swing.JFrame {
                 }
             }
         }
-        //TODO: ADD IMPLEMENTATION FOR OTHER PROPERTY IDS
+        if(data.bank.getProperty(data.players.get(playerNum).getID()).getId() == 6) {
+            int numRoads = 0;
+            for(int i = 0; i < data.players.size(); i++) {
+                for(int k = 0; k < data.players.get(i).properties.size(); i++) {
+                    if(data.bank.getStaticProperty(data.players.get(playerNum).getID()).equals(data.players.get(i).properties.get(k))) {
+                        numRoads++;
+                    }                        
+                }
+                    switch(numRoads) {
+                        case 0: break;
+                        case 1: data.players.get(playerNum).setCash(data.players.get(playerNum).getCash() - 25);
+                        data.players.get(i).setCash(data.players.get(i).getCash() + 25); break;
+                        case 2: data.players.get(playerNum).setCash(data.players.get(playerNum).getCash() - 50);
+                        data.players.get(i).setCash(data.players.get(i).getCash() + 50); break;
+                        case 3: data.players.get(playerNum).setCash(data.players.get(playerNum).getCash() - 100);
+                        data.players.get(i).setCash(data.players.get(i).getCash() + 100); break;
+                        case 4: data.players.get(playerNum).setCash(data.players.get(playerNum).getCash() - 200);
+                        data.players.get(i).setCash(data.players.get(i).getCash() + 200); break;
+                    }
+                    numRoads = 0;
+            }
+        }
+        if(data.bank.getProperty(data.players.get(playerNum).getID()).getId() == 7) {
+            int toGive = 0;
+            toGive = var.get(1) + var.get(2);
+            for(int i = 0; i < data.players.size(); i++) {
+                for(int k = 0; k < data.players.get(i).properties.size(); i++) {
+                    if(data.bank.getStaticProperty(data.players.get(playerNum).getID()).equals(data.players.get(i).properties.get(k))) {
+                        data.players.get(playerNum).setCash(data.players.get(playerNum).getCash() - toGive);
+                        data.players.get(i).setCash(data.players.get(i).getCash() + toGive);
+                    }
+                }
+            }
+        }
+        if(data.bank.getProperty(data.players.get(playerNum).getID()).getId() == 8) {
+            data.players.get(playerNum).setCash(data.players.get(playerNum).getCash() - 75);
+            data.bank.setTaxPool(data.bank.getTaxPool() + 75);
+        }
+        if(data.bank.getProperty(data.players.get(playerNum).getID()).getId() == 9) {
+            if(data.players.get(playerNum).getID() == 8 || data.players.get(playerNum).getID() == 23 || data.players.get(playerNum).getID() == 37) {
+                int got = data.chanceCards.getRandomID();
+                data.chanceCards.doAction(data.players.get(playerNum), got, this, data);
+            }
+            if(data.players.get(playerNum).getID() == 8 || data.players.get(playerNum).getID() == 23 || data.players.get(playerNum).getID() == 37) {
+                int got = data.communityCards.getRandomID();
+                data.communityCards.doAction(data.players.get(playerNum), got, data, data.bank);
+            }
+        }
         
         
 
@@ -1295,8 +1342,12 @@ public class Board extends javax.swing.JFrame {
 
     private void endTurnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endTurnActionPerformed
         // TODO add your handling code here:
+        if(data.players.get(playerNum).getCash() <= 0) {
+            JOptionPane.showMessageDialog(this, "YOU LOSE!");
+            data.players.remove(data.players.get(playerNum));
+        }
         if(playerNum == data.players.size())
-            playerNum = 1;
+            playerNum = 0;
         else
             playerNum += 1;
         canRoll = true;
