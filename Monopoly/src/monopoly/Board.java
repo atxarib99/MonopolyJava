@@ -399,7 +399,7 @@ public class Board extends javax.swing.JFrame {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        manageDialog.setMinimumSize(new java.awt.Dimension(500, 400));
+        manageDialog.setMinimumSize(new java.awt.Dimension(500, 451));
         manageDialog.setResizable(false);
 
         manage_title.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
@@ -468,7 +468,7 @@ public class Board extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageDialogLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(manageDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(manage_note, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+                    .addComponent(manage_note, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
                     .addComponent(manage_title, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, manageDialogLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -491,7 +491,7 @@ public class Board extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(manage_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addGap(35, 35, 35))
         );
         manageDialogLayout.setVerticalGroup(
             manageDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -518,7 +518,7 @@ public class Board extends javax.swing.JFrame {
                 .addGroup(manageDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(manage_finish, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(manage_cancel, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addGap(66, 66, 66))
         );
 
         startGame_addPlayers.setMinimumSize(new java.awt.Dimension(450, 300));
@@ -616,7 +616,8 @@ public class Board extends javax.swing.JFrame {
                 .addContainerGap(64, Short.MAX_VALUE))
         );
 
-        buyProperty.setMinimumSize(new java.awt.Dimension(400, 300));
+        buyProperty.setMaximumSize(new java.awt.Dimension(344, 115));
+        buyProperty.setMinimumSize(new java.awt.Dimension(344, 115));
         buyProperty.setResizable(false);
 
         buyProperty_yes.setText("Yes");
@@ -634,7 +635,7 @@ public class Board extends javax.swing.JFrame {
         });
 
         buyProperty_name.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        buyProperty_name.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        buyProperty_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         buyProperty_name.setText("Would you like to buy: ");
 
         javax.swing.GroupLayout buyPropertyLayout = new javax.swing.GroupLayout(buyProperty.getContentPane());
@@ -642,26 +643,25 @@ public class Board extends javax.swing.JFrame {
         buyPropertyLayout.setHorizontalGroup(
             buyPropertyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(buyPropertyLayout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addComponent(buyProperty_yes)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buyProperty_no)
-                .addGap(74, 74, 74))
-            .addGroup(buyPropertyLayout.createSequentialGroup()
-                .addGap(125, 125, 125)
-                .addComponent(buyProperty_name)
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(buyPropertyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buyProperty_name)
+                    .addGroup(buyPropertyLayout.createSequentialGroup()
+                        .addComponent(buyProperty_yes)
+                        .addGap(18, 18, 18)
+                        .addComponent(buyProperty_no)))
+                .addContainerGap(190, Short.MAX_VALUE))
         );
         buyPropertyLayout.setVerticalGroup(
             buyPropertyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, buyPropertyLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addContainerGap()
                 .addComponent(buyProperty_name)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(buyPropertyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buyProperty_yes)
                     .addComponent(buyProperty_no))
-                .addGap(57, 57, 57))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1737,6 +1737,8 @@ public class Board extends javax.swing.JFrame {
         }
         if(goodSoFar)
             manage(manage_propertyField.getText(), Integer.parseInt(manage_houseField.getText()), addHotel);
+		manageDialog.dispose();
+		manageDialog.setAlwaysOnTop(false);
     }//GEN-LAST:event_manage_finishActionPerformed
 
 	/* If the player wishes to add a hotel during the manage, the variable will
