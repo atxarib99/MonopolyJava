@@ -1651,6 +1651,7 @@ public class Board extends javax.swing.JFrame {
 			player4_cash.setText(data.players.get(3).getCash() + "");
 			p4Index.setText(data.players.get(3).getID() + " : " + data.bank.getStaticProperty(data.players.get(3).getID() - 1).getName());
 		}
+        
     }
 	
 	/* This will reset things to default on the panels just for when the game
