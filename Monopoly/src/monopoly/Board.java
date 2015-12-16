@@ -155,6 +155,10 @@ public class Board extends javax.swing.JFrame {
         manage = new javax.swing.JButton();
         endTurn = new javax.swing.JButton();
         indexOfPlayers = new javax.swing.JLabel();
+        p1Index = new javax.swing.JLabel();
+        p2Index = new javax.swing.JLabel();
+        p3Index = new javax.swing.JLabel();
+        p4Index = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         file_newGame = new javax.swing.JMenuItem();
@@ -1142,6 +1146,14 @@ public class Board extends javax.swing.JFrame {
         indexOfPlayers.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         indexOfPlayers.setText("INDEX OF PLAYERS: ");
 
+        p1Index.setText("1");
+
+        p2Index.setText("1");
+
+        p3Index.setText("1");
+
+        p4Index.setText("1");
+
         jMenu1.setText("File");
 
         file_newGame.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
@@ -1206,7 +1218,17 @@ public class Board extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(indexOfPlayers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(indexOfPlayers)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(p1Index, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(p2Index, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(p3Index, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(p4Index, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -1216,7 +1238,12 @@ public class Board extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(buttons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(indexOfPlayers, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(indexOfPlayers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(p1Index, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(p2Index, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(p3Index, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(p4Index, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -1482,34 +1509,43 @@ public class Board extends javax.swing.JFrame {
         while(tab4.getRowCount() > 0) {
             tab4.removeRow(0);
         }
-        ArrayList<Property> temp1 = data.players.get(0).getProperties();
-        ArrayList<Property> temp2 = data.players.get(1).getProperties();
-        ArrayList<Property> temp3 = data.players.get(2).getProperties();
-        ArrayList<Property> temp4 = data.players.get(3).getProperties();
-        for(int i = 0; i < temp1.size(); i++) {
-            Object[] content = {temp1.get(i).getName()};
-            tab1.addRow(content);
-        }
-        for(int i = 0; i < temp2.size(); i++) {
-            Object[] content = {temp2.get(i).getName()};
-            tab2.addRow(content);
-        }
-        for(int i = 0; i < temp3.size(); i++) {
-            Object[] content = {temp3.get(i).getName()};
-            tab3.addRow(content);
-        }
-        for(int i = 0; i < temp4.size(); i++) {
-            Object[] content = {temp4.get(i).getName()};
-            tab4.addRow(content);
-        }
-        player1_cash.setText(data.players.get(0).getCash() + "");
-        player2_cash.setText(data.players.get(1).getCash() + "");
-        player3_cash.setText(data.players.get(2).getCash() + "");
-        player4_cash.setText(data.players.get(3).getCash() + "");
 		
-		indexOfPlayers.setText("INDEX OF PLAYERS: " + data.players.get(0).getID()
-				+ ", " + data.players.get(1).getID() + ", " + data.players.get(2).getID()
-				+ ", " + data.players.get(3).getID());
+		if (isPlayer1) {
+			ArrayList<Property> temp1 = data.players.get(0).getProperties();
+			for(int i = 0; i < temp1.size(); i++) {
+				Object[] content = {temp1.get(i).getName()};
+				tab1.addRow(content);
+			}
+			player1_cash.setText(data.players.get(0).getCash() + "");
+			p1Index.setText(data.players.get(0).getID() + "");
+		}
+		if (isPlayer2) {
+			ArrayList<Property> temp2 = data.players.get(1).getProperties();
+			for(int i = 0; i < temp2.size(); i++) {
+				Object[] content = {temp2.get(i).getName()};
+				tab2.addRow(content);
+			}
+			player2_cash.setText(data.players.get(1).getCash() + "");
+			p2Index.setText(data.players.get(1).getID() + "");
+		}
+		if (isPlayer3) {
+			ArrayList<Property> temp3 = data.players.get(2).getProperties();
+			for(int i = 0; i < temp3.size(); i++) {
+				Object[] content = {temp3.get(i).getName()};
+				tab3.addRow(content);
+			}
+			player3_cash.setText(data.players.get(2).getCash() + "");
+			p3Index.setText(data.players.get(2).getID() + "");
+		}
+		if (isPlayer4) {
+			ArrayList<Property> temp4 = data.players.get(3).getProperties();
+			for(int i = 0; i < temp4.size(); i++) {
+				Object[] content = {temp4.get(i).getName()};
+				tab4.addRow(content);
+			}
+			player4_cash.setText(data.players.get(3).getCash() + "");
+			p4Index.setText(data.players.get(3).getID() + "");
+		}
     }
 	
 	public void reset() {
@@ -1835,6 +1871,10 @@ public class Board extends javax.swing.JFrame {
     private javax.swing.JLabel manage_propertyLabel;
     private javax.swing.JLabel manage_title;
     private javax.swing.JButton manage_updateCash;
+    private javax.swing.JLabel p1Index;
+    private javax.swing.JLabel p2Index;
+    private javax.swing.JLabel p3Index;
+    private javax.swing.JLabel p4Index;
     private javax.swing.JLabel player1_cash;
     private javax.swing.JLabel player1_cashLabel;
     private javax.swing.JButton player1_jailCard;
