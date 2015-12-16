@@ -1722,7 +1722,6 @@ public class Board extends javax.swing.JFrame {
         }
         manage_cost.setText(format + finalCost);
     }//GEN-LAST:event_manage_updateCashActionPerformed
-<<<<<<< HEAD
 
     private void buyProperty_yesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyProperty_yesActionPerformed
         // TODO add your handling code here:
@@ -1737,8 +1736,6 @@ public class Board extends javax.swing.JFrame {
         buyProperty.setVisible(false);
         buyProperty.dispose();
     }//GEN-LAST:event_buyProperty_noActionPerformed
-
-=======
 	
 	private void drawPlayers() {
 		indexes[0] = data.players.get(0).getID();
@@ -1749,7 +1746,6 @@ public class Board extends javax.swing.JFrame {
 		a.updatePlayers(indexes);
 		board = a;
 	}
->>>>>>> origin/master
     /**
      * @param args the command line arguments
      */
