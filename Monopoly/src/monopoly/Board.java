@@ -1897,7 +1897,7 @@ public class Board extends javax.swing.JFrame {
 //            JOptionPane.showMessageDialog(this, "INTERRUPTED EXCEPTION");
 //        }
 //        if(accepted)
-          trade(trade_tradeeField.getText(), trade_propertyGiven.getText(), trade_propertyReceivedField.getText(), Integer.parseInt(trade_cashGivenField.getText()), Integer.parseInt(trade_cashReceivedField.getText()));
+          trade(trade_tradeeField.getText(), trade_propertyGivenField.getText(), trade_propertyReceivedField.getText(), Integer.parseInt(trade_cashGivenField.getText()), Integer.parseInt(trade_cashReceivedField.getText()));
           tradeDialog.setVisible(false);
           tradeDialog.dispose();
     }//GEN-LAST:event_trade_finishBtnActionPerformed
