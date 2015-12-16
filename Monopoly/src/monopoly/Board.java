@@ -26,6 +26,10 @@ public class Board extends javax.swing.JFrame {
     /**
      * Creates new form Board
      */
+	
+	/* All these variables are used to control actions of the players in the game
+	 * and to make sure nothing happens that isn't supposed to.
+	 */
     Data data;
     int playerNum;
     private File location;
@@ -42,6 +46,10 @@ public class Board extends javax.swing.JFrame {
     public final String JAILCARDNOJAIL = "Currently Not In Jail";
     public final String JAILCARDJAIL = "Use Get Out Of Jail Free Card";
 	int[] indexes = new int[4];
+	
+	/* Sets the default values of the variables for when players just enter the
+	 * game
+	 */
     public Board() {
         initComponents();
         data = new Data();
@@ -1268,6 +1276,10 @@ public class Board extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+	/* THIS IS HOW TO INITIALLY START THE GAME***
+	 * When players start the game (over), this will reset everything to the
+	 * default values.
+	 */
     private void file_newGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_file_newGameActionPerformed
         // TODO add your handling code here:
         startGame_addPlayers.dispose();
@@ -1288,6 +1300,9 @@ public class Board extends javax.swing.JFrame {
         wantToBuy = false;
     }//GEN-LAST:event_file_newGameActionPerformed
 
+	/* When players have a game from before they want to finish, this will open
+	 * the game file from before if it was saved.
+	 */
     private void file_openGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_file_openGameActionPerformed
         // TODO add your handling code here:
         JFileChooser jfc = new JFileChooser();
@@ -1309,6 +1324,9 @@ public class Board extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_file_openGameActionPerformed
 
+	/* If players wish to save their game again after a save is already saved,
+	 * they can override that save file with file_save.
+	 */
     private void file_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_file_saveActionPerformed
         // TODO add your handling code here:
         if (location != null) {
@@ -1325,6 +1343,10 @@ public class Board extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_file_saveActionPerformed
 
+	/* If players wish to save the current state of the game for later, this will
+	 * create a file that holds all the information necessary to pick the game
+	 * up again from the exact same spot.
+	 */
     private void file_saveAsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_file_saveAsActionPerformed
         // TODO add your handling code here:
         JFileChooser jfc = new JFileChooser();
@@ -1342,14 +1364,26 @@ public class Board extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_file_saveAsActionPerformed
 
+	/* If the players wish to exit the game, this will close and wipe everything
+	 * from the current game open, but first prompt to save in case the players
+	 * forgot to do so.
+	 */
     private void file_closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_file_closeActionPerformed
         // TODO add your handling code here:
 		file_saveActionPerformed(evt);
 		System.exit(0);
     }//GEN-LAST:event_file_closeActionPerformed
 
+	/* This will first check to see if the current player is allowed to roll by
+	 * checking if he is in jail or if he already rolled. Then the player will
+	 * roll the dice, the moves will be displayed, and the player will move and
+	 * perform the correct operation (buying property, drawing a chance card)
+	 * depending on the spot he landed on.
+	 */
     private void rollDiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rollDiceActionPerformed
         // TODO add your handling code here:
+		
+		//Checks for if the player is in jail or has already rolled.
         ArrayList<Integer> var = new ArrayList<>();
         if(data.players.get(playerNum).inJail) {
             var = data.players.get(playerNum).roll();
@@ -1375,13 +1409,19 @@ public class Board extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "You've already rolled");
         canRoll = false;
         update();
+		
+		//For spot type 3, the player collects all money collected by taxes in free parking.
         if(data.bank.getProperty(data.players.get(playerNum).getID()).getType() == 3) {
             data.players.get(playerNum).setCash(data.players.get(playerNum).getCash() + data.bank.getTaxPool());
         }
+		//For spot type 4, the player goes to Jail.
         if(data.bank.getProperty(data.players.get(playerNum).getID()).getType() == 4) {
             data.players.get(playerNum).setID(10);
             data.players.get(playerNum).inJail = true;
         }
+		//For spot type 5, the player can either purchase the property if now owned,
+		//or he must pay the person who owns that property depending on the number of
+		//houses/hotels owned.
         if(data.bank.getProperty(data.players.get(playerNum).getID()).getType() == 5) {
             if(!data.bank.getProperty(data.players.get(playerNum).getID()).getName().equals("Error")) {
                 for(int i = 0; i < data.players.size(); i++) {
@@ -1407,6 +1447,10 @@ public class Board extends javax.swing.JFrame {
             }
         }
         } 
+		
+		//For these spots, the player could purchase a railroad, or be required
+		//to pay another player who owns that railroad depending on the number
+		//of railroads owned by the owner in total.
         if(data.bank.getProperty(data.players.get(playerNum).getID()).getType() == 6) {
             int numRoads = 0;
             for(int i = 0; i < data.players.size(); i++) {
@@ -1429,6 +1473,8 @@ public class Board extends javax.swing.JFrame {
                     numRoads = 0;
             }
         }
+		//On spot type 7, the player can purchase a utility or pay money to the 
+		//player who owns that utility depending on his roll.
         if(data.bank.getProperty(data.players.get(playerNum).getID()).getType() == 7) {
             int toGive = 0;
             toGive = var.get(1) + var.get(2);
@@ -1441,10 +1487,12 @@ public class Board extends javax.swing.JFrame {
                 }
             }
         }
+		//On spot type 8, the player must pay taxes.
         if(data.bank.getProperty(data.players.get(playerNum).getID()).getType() == 8) {
             data.players.get(playerNum).setCash(data.players.get(playerNum).getCash() - 75);
             data.bank.setTaxPool(data.bank.getTaxPool() + 75);
         }
+		//On spot type 9, the player must draw a chance card or community card.
         if(data.bank.getProperty(data.players.get(playerNum).getID()).getType() == 9) {
             if(data.players.get(playerNum).getID() == 8 || data.players.get(playerNum).getID() == 23 || data.players.get(playerNum).getID() == 37) {
                 int got = data.chanceCards.getRandomID();
@@ -1460,12 +1508,15 @@ public class Board extends javax.swing.JFrame {
 
     }//GEN-LAST:event_rollDiceActionPerformed
 
+	/*When a player wishes to trade, the trading option menu appears. */
     private void tradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tradeActionPerformed
         // TODO add your handling code here:
         tradeDialog.show();
-
     }//GEN-LAST:event_tradeActionPerformed
 
+	/* When a player wishes to manage his properties, he can add houses or
+	 * hotels to his property.
+	 */
     private void manageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageActionPerformed
         // TODO add your handling code here:
 		manageDialog.dispose();
@@ -1473,6 +1524,10 @@ public class Board extends javax.swing.JFrame {
 		manageDialog.setVisible(true);
     }//GEN-LAST:event_manageActionPerformed
 
+	/* When a player wishes to end his turn, the dice will be passed onto the
+	 * next player and this also checks to see if a player loses because he
+	 * ran out of money.
+	 */
     private void endTurnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endTurnActionPerformed
         // TODO add your handling code here:
         if(data.players.get(playerNum).getCash() <= 0) {
@@ -1486,6 +1541,9 @@ public class Board extends javax.swing.JFrame {
         canRoll = true;
     }//GEN-LAST:event_endTurnActionPerformed
 
+	/* This will take a property and a certain amount of money from someone
+	 * and give them to someone else.
+	 */
     public void trade(String player, String prop1, String prop2, int cash1, int cash2) {
         Player player1 = data.players.get(playerNum);
         Player player2 = data.getPlayerFromString(player);
@@ -1499,10 +1557,13 @@ public class Board extends javax.swing.JFrame {
         player1.addProperty(thisProp2);
         player2.removeProperty(thisProp2);
         player2.addProperty(thisProp1);
-        //NOTE HELLO STEVEN IGNORE THIS WHILEE COMMENTING
-        //TRY TO DO THIS WIHTOUT CREATING PLAYER OBJECTS
         
     }
+	
+	/* This will add houses and hotel costs to the total amount that one will
+	 * have to pay if they land on your property. You can see if you have enough
+	 * money to purchase a number of houses or if you can purchase a hotel.
+	 */
     private void manage(String prop1, int numHouse, boolean hotel) {
         Player player1 = data.players.get(playerNum);
         Property thisProp1 = player1.getPropertyFromString(prop1);
@@ -1524,6 +1585,11 @@ public class Board extends javax.swing.JFrame {
             player1.setCash(player1.getCash() - finalCost);
         }
     }
+	
+	/* This will refresh the panels on the side that hold all the player's
+	 * information depending on the players playing and will be repeated after
+	 * each operation.
+	 */
     private void update() {
         DefaultTableModel tab1 = (DefaultTableModel) player1_propertiesTable.getModel();
         DefaultTableModel tab2 = (DefaultTableModel) player2_propertiesTable.getModel();
@@ -1580,6 +1646,9 @@ public class Board extends javax.swing.JFrame {
 		}
     }
 	
+	/* This will reset things to default on the panels just for when the game
+	 * is reset.
+	 */
 	public void reset() {
 		DefaultTableModel tab1 = (DefaultTableModel) player1_propertiesTable.getModel();
         DefaultTableModel tab2 = (DefaultTableModel) player2_propertiesTable.getModel();
@@ -1603,14 +1672,17 @@ public class Board extends javax.swing.JFrame {
         player4_cash.setText("0");
 	}
 
+	/* Should not do anything, this listener was accidentally added. */
     private void trade_propertyGivenFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trade_propertyGivenFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_trade_propertyGivenFieldActionPerformed
 
+	/* Should not do anything, this listener was accidentally added. */
     private void trade_cashGivenFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trade_cashGivenFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_trade_cashGivenFieldActionPerformed
 
+	/* When pressed, the trade requested will go through. */
     private void accept_acceptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accept_acceptBtnActionPerformed
         // TODO add your handling code here:
         accepted = true;
@@ -1618,6 +1690,7 @@ public class Board extends javax.swing.JFrame {
         accept.dispose();
     }//GEN-LAST:event_accept_acceptBtnActionPerformed
 
+	/* This will reject the trade and continue the game. */
     private void accept_declineBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accept_declineBtnActionPerformed
         // TODO add your handling code here:
         accepted = false;
@@ -1625,11 +1698,19 @@ public class Board extends javax.swing.JFrame {
         accept.dispose();
     }//GEN-LAST:event_accept_declineBtnActionPerformed
 
+	/* If the player no longer wishes to add houses or a hotel, this will wipe
+	 * and hide the dialog.
+	 */
     private void manage_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manage_cancelActionPerformed
         // TODO add your handling code here:
+		manageDialog.dispose();
 		manageDialog.setVisible(false);
     }//GEN-LAST:event_manage_cancelActionPerformed
 
+	/* If the player has finished his decision on how many houses or a hotel to
+	 * add to his property, this will check to see that everything is in order
+	 * before proceeding.
+	 */
     private void manage_finishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manage_finishActionPerformed
         // TODO add your handling code here:
         boolean goodSoFar = true;
@@ -1651,6 +1732,9 @@ public class Board extends javax.swing.JFrame {
             manage(manage_propertyField.getText(), Integer.parseInt(manage_houseField.getText()), addHotel);
     }//GEN-LAST:event_manage_finishActionPerformed
 
+	/* If the player wishes to add a hotel during the manage, the variable will
+	 * record that he wanted a hotel.
+	 */
     private void manage_hotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manage_hotelActionPerformed
         // TODO add your handling code here:
         if (addHotel)
@@ -1659,6 +1743,9 @@ public class Board extends javax.swing.JFrame {
             addHotel = true;
     }//GEN-LAST:event_manage_hotelActionPerformed
 
+	/* After the players all put in their name, this will check to see if there
+	 * will be a player 1.
+	 */
     private void isPlayerOneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isPlayerOneActionPerformed
         // TODO add your handling code here:
         if (isPlayer1)
@@ -1667,6 +1754,9 @@ public class Board extends javax.swing.JFrame {
             isPlayer1 = true;
     }//GEN-LAST:event_isPlayerOneActionPerformed
 
+	/* After the players all put in their name, this will check to see if there
+	 * will be a player 2.
+	 */
     private void isPlayerTwoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isPlayerTwoActionPerformed
         // TODO add your handling code here:
         if (isPlayer2)
@@ -1675,6 +1765,9 @@ public class Board extends javax.swing.JFrame {
             isPlayer2 = true;
     }//GEN-LAST:event_isPlayerTwoActionPerformed
 
+	/* After the players all put in their name, this will check to see if there
+	 * will be a player 3.
+	 */
     private void isPlayerThreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isPlayerThreeActionPerformed
         // TODO add your handling code here:
         if (isPlayer3)
@@ -1683,6 +1776,9 @@ public class Board extends javax.swing.JFrame {
             isPlayer3 = true;
     }//GEN-LAST:event_isPlayerThreeActionPerformed
 
+	/* After the players all put in their name, this will check to see if there
+	 * will be a player 4.
+	 */
     private void isPlayerFourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isPlayerFourActionPerformed
         // TODO add your handling code here:
         if (isPlayer4)
@@ -1691,6 +1787,9 @@ public class Board extends javax.swing.JFrame {
             isPlayer4 = true;
     }//GEN-LAST:event_isPlayerFourActionPerformed
 
+	/* When players are done adding in their names, the game will instantiate
+	 * them and set their default properties and refresh the panels.
+	 */
     private void startGame_finishAddingPlayersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startGame_finishAddingPlayersActionPerformed
         // TODO add your handling code here:
         if (!isPlayer1 && !isPlayer2 && !isPlayer3 && !isPlayer4)
@@ -1735,9 +1834,13 @@ public class Board extends javax.swing.JFrame {
         }
         startGame_addPlayers.setVisible(false);
 		update();
+		drawPlayers();
 		}
     }//GEN-LAST:event_startGame_finishAddingPlayersActionPerformed
 
+	/* This will show a dialog to the player receiving the trade for whether or
+	 * not they wish to accept the trade.
+	 */
     private void trade_finishBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trade_finishBtnActionPerformed
         // TODO add your handling code here:
 //        if((trade_cashGivenField.getText().equals("") || trade_propertyGiven.getText().equals("")) || (trade_cashReceivedField.getText().equals("") || trade_propertyReceivedField.getText().equals("")) || trade_tradeeField.getText().equals("")) {
@@ -1784,6 +1887,9 @@ public class Board extends javax.swing.JFrame {
           tradeDialog.dispose();
     }//GEN-LAST:event_trade_finishBtnActionPerformed
 
+	/* This will keep the cash required to "manage" the player's property updated
+	 * so the player can know if he has enough to add the houses/hotel.
+	 */
     private void manage_updateCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manage_updateCashActionPerformed
         // TODO add your handling code here: GET VALUES FROM PROPERTIES TO UPDATE
         String format = "Total Cost: $";
@@ -1796,6 +1902,9 @@ public class Board extends javax.swing.JFrame {
         manage_cost.setText(format + finalCost);
     }//GEN-LAST:event_manage_updateCashActionPerformed
 
+	/* After a player lands on a property and it is not owned, and he chose to
+	 * buy it, the property will be removed from the bank and given to the player.
+	 */
     private void buyProperty_yesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyProperty_yesActionPerformed
         // TODO add your handling code here:
         if((data.bank.properties.get(data.players.get(playerNum).getID() - 1).getType() == 5 || data.bank.properties.get(data.players.get(playerNum).getID() - 1).getType() == 6 || data.bank.properties.get(data.players.get(playerNum).getID() - 1).getType() == 7) && data.bank.canBuy(data.players.get(playerNum).getID())) {
@@ -1807,6 +1916,9 @@ public class Board extends javax.swing.JFrame {
         update();
     }//GEN-LAST:event_buyProperty_yesActionPerformed
 
+	/* If the player does not wish to buy the property, the dialog disappears
+	 * and the game proceeds.
+	 */
     private void buyProperty_noActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyProperty_noActionPerformed
         // TODO add your handling code here:
         wantToBuy = false;
@@ -1814,12 +1926,17 @@ public class Board extends javax.swing.JFrame {
         buyProperty.dispose();
     }//GEN-LAST:event_buyProperty_noActionPerformed
 
+	/* If a player lands on a property not yet bought, and he presses the button,
+	 * he will be prompted to buy the property.
+	 */
     private void buyPropertyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyPropertyButtonActionPerformed
         // TODO add your handling code here:
         buyProperty.setVisible(true);
         buyProperty_name.setText("Would you like to buy: " + data.bank.staticProperties.get(data.players.get(playerNum).getID() - 1).getName());
     }//GEN-LAST:event_buyPropertyButtonActionPerformed
 
+	/* Will keep the player's icon on the field currently updated.
+	 */
 	private void drawPlayers() {
 		indexes[0] = data.players.get(0).getID();
 		indexes[1] = data.players.get(1).getID();
